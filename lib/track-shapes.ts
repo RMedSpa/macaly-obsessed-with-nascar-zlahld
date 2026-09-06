@@ -32,6 +32,8 @@ export type TrackShapeDef = {
   sf: { x: number; y: number; angle: number };
   turns: TrackTurnLabel[];
   extras?: TrackShapeExtra[];
+  /** Miter joins keep doglegs / quad corners from dissolving into blobs. */
+  sharp?: boolean;
   /** Statute miles — index scale strip. */
   lengthMiles: number;
   /** Short note shown under the graphic. */
@@ -63,6 +65,18 @@ function insetPath(pts: Array<[number, number]>, scale: number, cx = 500, cy = 2
   return catmullClosed(
     pts.map(([x, y]) => [cx + (x - cx) * scale, cy + (y - cy) * scale])
   );
+}
+
+function polyClosed(pts: Array<[number, number]>): string {
+  return `M ${pts.map(([x, y]) => `${n(x)} ${n(y)}`).join(' L ')} Z`;
+}
+
+function insetPoly(pts: Array<[number, number]>, scale: number, cx = 500, cy = 280): string {
+  return polyClosed(pts.map(([x, y]) => [cx + (x - cx) * scale, cy + (y - cy) * scale]));
+}
+
+function ellipseRing(cx: number, cy: number, rx: number, ry: number): string {
+  return `M ${n(cx + rx)} ${n(cy)} A ${n(rx)} ${n(ry)} 0 1 1 ${n(cx - rx)} ${n(cy)} A ${n(rx)} ${n(ry)} 0 1 1 ${n(cx + rx)} ${n(cy)} Z`;
 }
 
 /** Two-ellipse egg: unequal end radii, tapering tangent straights. */
@@ -160,105 +174,6 @@ function paperclipPoints(
   return pts;
 }
 
-/**
- * D / tri-oval: flatter backstretch, single frontstretch bulge.
- * `bulge` is extra south offset at mid-frontstretch (TV grandstand side).
- * `pointed` > 0 sharpens the tri-oval into a more triangular D (Kansas).
- */
-function triOvalPoints(opts: {
-  cx: number;
-  cy: number;
-  rx: number;
-  ry: number;
-  bulge: number;
-  pointed?: number;
-  backFlat?: number;
-  steps?: number;
-}): Array<[number, number]> {
-  const { cx, cy, rx, ry, bulge, pointed = 0, backFlat = 0.22, steps = 48 } = opts;
-  const pts: Array<[number, number]> = [];
-  for (let i = 0; i < steps; i += 1) {
-    // 0 at +x (T1), increasing CCW in math (y-up). Convert so frontstretch is +y in SVG.
-    const a = (Math.PI * 2 * i) / steps + Math.PI / 2;
-    let x = cx + rx * Math.cos(a);
-    let y = cy + ry * Math.sin(a);
-
-    const front = Math.max(0, Math.sin(a)); // 1 at bottom
-    const back = Math.max(0, -Math.sin(a));
-    const mid = Math.pow(front, 2.1);
-    y += bulge * mid;
-    if (pointed > 0) {
-      x += (x - cx) * pointed * mid;
-      y += pointed * 10 * mid;
-    }
-    y += backFlat * back * (ry * 0.08);
-    pts.push([x, y]);
-  }
-  return pts;
-}
-
-/** Quad-oval: two discrete frontstretch doglegs with a short S/F straight. */
-function quadOvalPoints(
-  cx: number,
-  cy: number,
-  rx: number,
-  ry: number,
-  dogleg: number,
-  steps = 64
-): Array<[number, number]> {
-  const pts: Array<[number, number]> = [];
-  for (let i = 0; i < steps; i += 1) {
-    const a = (Math.PI * 2 * i) / steps + Math.PI / 2;
-    let x = cx + rx * Math.cos(a);
-    let y = cy + ry * Math.sin(a);
-    const front = Math.max(0, Math.sin(a));
-    const nx = (x - cx) / rx;
-    // Two shoulders + a flat S/F shelf — the SMI “double dogleg” read.
-    const shoulder = Math.pow(front, 1.15) * Math.pow(Math.abs(Math.abs(nx) - 0.32), 0.35);
-    const shelf = front > 0.78 && Math.abs(nx) < 0.2 ? 0.42 : 0;
-    y += dogleg * (0.55 * Math.pow(front, 1.8) + 0.9 * shoulder * Math.pow(front, 1.2) - shelf);
-    pts.push([x, y]);
-  }
-  return pts;
-}
-
-/**
- * Phoenix: mile oval + unmistakable backstretch/front dogleg kink.
- * After the 2018 remodel the S/F sits just before the dogleg (RacingCircuits.info).
- */
-function phoenixPoints(): Array<[number, number]> {
-  // Constructed as a rounded D, then a dogleg kink on the south-east frontstretch.
-  // Refs: Wikipedia "dogleg oval"; 2011 dogleg pushed out 95 ft / radius ~500 ft.
-  const cx = 500;
-  const cy = 278;
-  const pts: Array<[number, number]> = [];
-  const steps = 64;
-  for (let i = 0; i < steps; i += 1) {
-    const a = (Math.PI * 2 * i) / steps + Math.PI / 2;
-    let rx = 268;
-    let ry = 148;
-    // T3–T4 (west) tighter than T1–T2 (east) — 11° vs 9° banks, shorter radius.
-    if (Math.cos(a) < 0) {
-      rx = 238;
-      ry = 142;
-    }
-    let x = cx + rx * Math.cos(a);
-    let y = cy + ry * Math.sin(a);
-
-    // Dogleg: sharp outward kink on the frontstretch, biased toward T1 (east).
-    // TV graphic reads this as the passing lane / restart launch.
-    const ang = ((a - Math.PI / 2 + Math.PI * 2) % (Math.PI * 2)) / (Math.PI * 2);
-    if (ang > 0.03 && ang < 0.2) {
-      const t = (ang - 0.03) / 0.17;
-      const bump = Math.pow(Math.sin(t * Math.PI), 0.72);
-      x += 36 * bump;
-      y += 78 * bump;
-    }
-    pts.push([x, y]);
-  }
-  return pts;
-}
-
 function turnAt(
   pts: Array<[number, number]>,
   index: number,
@@ -345,21 +260,45 @@ function buildGateway(): TrackShapeDef {
 }
 
 function buildBristol(): TrackShapeDef {
-  // Stadium oval — short 650 ft straights vs large-radius ends; nearly circular bowl.
-  // Concrete, 24–28° progressive banks. Dual-line width is the banking cue.
-  // Refs: Wikipedia Bristol Motor Speedway; BMS media guide (0.533 mi, 650 ft straights).
-  const pts = paperclipPoints(500, 280, 78, 152, 16);
+  // Nearly circular concrete bowl. 650 ft straights vs ~588 ft ends — stadium oval,
+  // not a paperclip and not a fat 1.5. Dual ring = 24–28° bank width.
+  // Refs: Wikipedia Bristol Motor Speedway; BMS media guide (0.533 mi).
+  const cx = 500;
+  const cy = 278;
+  const rx = 128;
+  const ry = 118;
+  // Tiny flats so it reads as a stadium bowl, not a geometry-class circle.
+  const stadium = [
+    [cx - 22, cy + ry],
+    [cx + 22, cy + ry],
+    [cx + rx, cy + 18],
+    [cx + rx, cy - 18],
+    [cx + 22, cy - ry],
+    [cx - 22, cy - ry],
+    [cx - rx, cy - 18],
+    [cx - rx, cy + 18],
+  ] as Array<[number, number]>;
   return {
     id: 'bristol',
-    d: catmullClosed(pts),
-    innerD: insetPath(pts, 0.72),
-    sf: midFront(pts),
+    d: polyClosed(stadium),
+    innerD: insetPoly(stadium, 0.62),
+    sf: { x: 500, y: 402, angle: 0 },
     turns: [
-      turnAt(pts, 8, 34, 'T1'),
-      turnAt(pts, 16, 34, 'T2'),
-      turnAt(pts, 26, 34, 'T3'),
-      turnAt(pts, 34, 34, 'T4'),
+      { id: 'T1', x: 655, y: 355 },
+      { id: 'T2', x: 655, y: 200 },
+      { id: 'T3', x: 345, y: 200 },
+      { id: 'T4', x: 345, y: 355 },
     ],
+    extras: [
+      {
+        d: insetPoly(stadium, 0.8),
+        kind: 'accent',
+        label: 'BOWL 24–28°',
+        labelX: 500,
+        labelY: 278,
+      },
+    ],
+    sharp: true,
     lengthMiles: 0.533,
     geometryNote: '0.533-mi concrete bowl · nearly circular · 24–28° banks',
     reference:
@@ -369,101 +308,140 @@ function buildBristol(): TrackShapeDef {
 
 function buildKansas(): TrackShapeDef {
   // ISC 1.5 tri-oval: triangular D — “grabbed the long side and pulled.”
-  // Single frontstretch bulge, flatter backstretch. Progressive 17–20°.
-  // Refs: Wikipedia Kansas Speedway; Building Speed cookie-cutter taxonomy (Kansas = D / tri-oval).
-  const pts = triOvalPoints({
-    cx: 500,
-    cy: 258,
-    rx: 300,
-    ry: 132,
-    bulge: 78,
-    pointed: 0.22,
-    backFlat: 0.55,
-  });
+  // Flat backstretch, single pointed frontstretch apex. Progressive 17–20°.
+  // Refs: Wikipedia Kansas Speedway; Building Speed cookie-cutter taxonomy.
+  const pts: Array<[number, number]> = [
+    [250, 428],
+    [360, 468],
+    [500, 498],
+    [640, 468],
+    [750, 428],
+    [808, 388],
+    [838, 328],
+    [838, 248],
+    [808, 192],
+    [750, 168],
+    [250, 168],
+    [192, 192],
+    [162, 248],
+    [162, 328],
+    [192, 388],
+  ];
   return {
     id: 'kansas',
-    d: catmullClosed(pts),
-    innerD: insetPath(pts, 0.88),
-    sf: { x: 500, y: 468, angle: 0 },
+    d: polyClosed(pts),
+    innerD: insetPoly(pts, 0.86),
+    sharp: true,
+    sf: { x: 500, y: 498, angle: 0 },
     turns: [
-      { id: 'T1', x: 812, y: 348 },
-      { id: 'T2', x: 812, y: 168 },
-      { id: 'T3', x: 188, y: 168 },
-      { id: 'T4', x: 188, y: 348 },
+      { id: 'T1', x: 860, y: 360 },
+      { id: 'T2', x: 860, y: 188 },
+      { id: 'T3', x: 140, y: 188 },
+      { id: 'T4', x: 140, y: 360 },
     ],
     extras: [
       {
-        d: 'M 430 454 L 500 478 L 570 454',
+        d: 'M 400 478 L 500 498 L 600 478',
         kind: 'accent',
         label: 'TRI-OVAL',
         labelX: 500,
-        labelY: 512,
+        labelY: 528,
       },
     ],
     lengthMiles: 1.5,
-    geometryNote: '1.5-mi tri-oval · triangular D · single frontstretch bulge',
+    geometryNote: '1.5-mi tri-oval · triangular D · pointed frontstretch · 17–20° prog.',
     reference:
       'Wikipedia Kansas Speedway (1.5-mi tri-oval, progressive 17–20°); Building Speed: Kansas is the D / pulled-triangle, not a quad-oval',
   };
 }
 
 function buildVegas(): TrackShapeDef {
-  // Traditional tri-oval / rounded D — smoother frontstretch curve than Kansas,
-  // slightly fatter, 20° constant banks. Not the same ellipse as Homestead.
-  // Refs: Wikipedia LVMS; Racing-Reference “D-shaped oval”; RacingCircuits “traditional tri-oval.”
-  const pts = triOvalPoints({
-    cx: 500,
-    cy: 276,
-    rx: 270,
-    ry: 168,
-    bulge: 28,
-    pointed: 0,
-    backFlat: 0.08,
-  });
+  // Traditional D / tri-oval: flat-ish backstretch, one continuous frontstretch
+  // curve (Daytona-like), 20° banks. Fuller ends than Kansas; no quad corners.
+  // Refs: Wikipedia LVMS; Racing-Reference “D-shaped oval”; RacingCircuits.
+  const pts: Array<[number, number]> = [
+    [280, 412],
+    [360, 442],
+    [440, 458],
+    [500, 464],
+    [560, 458],
+    [640, 442],
+    [720, 412],
+    [778, 368],
+    [808, 310],
+    [808, 242],
+    [778, 190],
+    [710, 164],
+    [290, 164],
+    [222, 190],
+    [192, 242],
+    [192, 310],
+    [222, 368],
+  ];
   return {
     id: 'vegas',
-    d: catmullClosed(pts),
-    innerD: insetPath(pts, 0.88),
+    d: polyClosed(pts),
+    innerD: insetPoly(pts, 0.86),
+    sharp: true,
     sf: { x: 500, y: 464, angle: 0 },
     turns: [
-      { id: 'T1', x: 780, y: 368 },
-      { id: 'T2', x: 780, y: 180 },
-      { id: 'T3', x: 220, y: 180 },
-      { id: 'T4', x: 220, y: 368 },
+      { id: 'T1', x: 830, y: 348 },
+      { id: 'T2', x: 830, y: 178 },
+      { id: 'T3', x: 170, y: 178 },
+      { id: 'T4', x: 170, y: 348 },
     ],
     extras: [
       {
-        d: 'M 420 456 Q 500 478 580 456',
+        d: 'M 400 450 L 500 464 L 600 450',
         kind: 'accent',
-        label: 'D-OVAL',
+        label: 'D-OVAL 20°',
         labelX: 500,
-        labelY: 504,
+        labelY: 500,
       },
     ],
     lengthMiles: 1.5,
-    geometryNote: '1.5-mi D-oval · smoother tri-oval than Kansas · 20° banks',
+    geometryNote: '1.5-mi D-oval · single frontstretch curve · 20° banks',
     reference:
       'Wikipedia Las Vegas Motor Speedway (D-shaped 1.5); RacingCircuits traditional tri-oval (Daytona-like single frontstretch curve)',
   };
 }
 
 function buildCharlotte(): TrackShapeDef {
-  // SMI quad-oval: double dogleg on the frontstretch, S/F on the mid-straight.
-  // 24° turns, 5° straights. 2026 Chase is the oval; Roval 2018–25 as ghost.
-  // Refs: Wikipedia Charlotte Motor Speedway; RacingCircuits quad-oval definition; CMS Feb 3 2026 oval return.
-  const pts = quadOvalPoints(500, 268, 288, 146, 68);
-  const roval =
-    'M 742 318 C 720 360 680 378 628 372 C 580 366 552 348 538 320 C 522 288 500 274 468 278 C 432 284 408 312 400 344 C 390 380 408 408 448 418 C 492 428 540 412 562 378 C 578 354 602 348 630 360 C 662 374 688 400 682 430 C 674 468 620 488 500 492';
+  // SMI quad-oval: two discrete frontstretch corners + a flat S/F grandstand
+  // shelf (the “quad”). 24° turns. 2026 Chase is the oval; Roval as ghost.
+  // Refs: Wikipedia CMS; RacingCircuits quad-oval; CMS Feb 3 2026 oval return.
+  const pts: Array<[number, number]> = [
+    [318, 428],
+    [378, 456],
+    [430, 468],
+    [570, 468],
+    [622, 456],
+    [682, 428],
+    [748, 392],
+    [798, 348],
+    [822, 298],
+    [822, 236],
+    [798, 188],
+    [738, 160],
+    [262, 160],
+    [202, 188],
+    [178, 236],
+    [178, 298],
+    [202, 348],
+    [252, 392],
+  ];
+  const roval = 'M 748 392 L 700 360 L 640 348 L 600 318 L 560 300 L 510 312 L 470 348 L 450 390 L 480 428 L 530 448';
   return {
     id: 'charlotte',
-    d: catmullClosed(pts),
-    innerD: insetPath(pts, 0.88),
+    d: polyClosed(pts),
+    innerD: insetPoly(pts, 0.86),
+    sharp: true,
     sf: { x: 500, y: 468, angle: 0 },
     turns: [
-      { id: 'T1', x: 790, y: 362 },
-      { id: 'T2', x: 790, y: 178 },
-      { id: 'T3', x: 210, y: 178 },
-      { id: 'T4', x: 210, y: 362 },
+      { id: 'T1', x: 848, y: 330 },
+      { id: 'T2', x: 848, y: 176 },
+      { id: 'T3', x: 152, y: 176 },
+      { id: 'T4', x: 152, y: 330 },
     ],
     extras: [
       {
@@ -471,77 +449,111 @@ function buildCharlotte(): TrackShapeDef {
         kind: 'ghost',
         label: 'ROVAL 2018–25',
         labelX: 500,
-        labelY: 330,
+        labelY: 328,
       },
     ],
     lengthMiles: 1.5,
-    geometryNote: '1.5-mi quad-oval · double frontstretch dogleg · 2026 Chase is oval',
+    geometryNote: '1.5-mi quad-oval · double dogleg + flat S/F shelf · 24° banks',
     reference:
       'Wikipedia CMS quad-oval; RacingCircuits: SMI double dogleg with S/F on the mid-straight; CMS 2026 oval return (not Roval)',
   };
 }
 
 function buildPhoenix(): TrackShapeDef {
-  const pts = phoenixPoints();
+  // Dogleg lives on the BACKSTRETCH (top). Classic PIR / RacingCircuits “desert
+  // oddball”: T2 → outward kink → T3. 2018 S/F sits just before the launch.
+  // Refs: Wikipedia Phoenix Raceway; RacingCircuits.info (dogleg on backstretch).
+  const pts: Array<[number, number]> = [
+    [320, 428],
+    [500, 436],
+    [680, 428],
+    [758, 392],
+    [800, 332],
+    [800, 250],
+    [768, 196],
+    [720, 172],
+    [660, 158],
+    [575, 72],
+    [425, 158],
+    [360, 176],
+    [300, 198],
+    [232, 218],
+    [200, 278],
+    [210, 348],
+    [248, 400],
+  ];
   return {
     id: 'phoenix',
-    d: catmullClosed(pts),
-    innerD: insetPath(pts, 0.86),
-    sf: { x: 548, y: 430, angle: 18 },
+    d: polyClosed(pts),
+    innerD: insetPoly(pts, 0.84),
+    sharp: true,
+    sf: { x: 690, y: 160, angle: -28 },
     turns: [
-      { id: 'T1', x: 790, y: 300 },
-      { id: 'T2', x: 760, y: 168 },
-      { id: 'T3', x: 232, y: 168 },
-      { id: 'T4', x: 220, y: 360 },
+      { id: 'T1', x: 830, y: 360 },
+      { id: 'T2', x: 830, y: 188 },
+      { id: 'T3', x: 200, y: 188 },
+      { id: 'T4', x: 168, y: 380 },
     ],
     extras: [
       {
-        d: 'M 560 428 C 600 460 650 478 702 456',
+        d: 'M 660 158 L 575 72 L 425 158',
         kind: 'accent',
         label: 'DOGLEG',
-        labelX: 720,
-        labelY: 500,
+        labelX: 500,
+        labelY: 52,
       },
     ],
     lengthMiles: 1.0,
-    geometryNote: '1-mi dogleg mile · S/F launches into the kink (2018 remodel)',
+    geometryNote: '1-mi dogleg mile · unmistakable backstretch kink · 2018 S/F at the launch',
     reference:
-      'Wikipedia Phoenix Raceway (dogleg oval); RacingCircuits.info 2011 dogleg +95 ft / 2018 S/F moved to just before the dogleg',
+      'Wikipedia Phoenix Raceway (dogleg oval); RacingCircuits.info: unique dog-leg on the backstretch; 2011 +95 ft / 2018 S/F moved to just before the dogleg',
   };
 }
 
 function buildTalladega(): TrackShapeDef {
-  // Longest Cup oval: 2.66 mi tri-oval. Frontstretch 4,300 ft with 16.5° bulge;
+  // Longest Cup oval: 2.66 mi. Frontstretch 4,300 ft + 16.5° tri-oval bulge;
   // backstretch 4,000 ft; turns r≈1,100 ft / 33°. S/F offset toward T1.
-  // Refs: Wikipedia Talladega; ESPN / RacingCircuits stretch + radius notes.
-  const pts = triOvalPoints({
-    cx: 500,
-    cy: 278,
-    rx: 368,
-    ry: 118,
-    bulge: 38,
-    pointed: 0.04,
-    backFlat: 0.4,
-    steps: 56,
-  });
+  // Drawn using almost the full 1000-wide artboard so Dega dwarfs Bristol.
+  // Refs: Wikipedia Talladega; ESPN stretch + radius notes.
+  const pts: Array<[number, number]> = [
+    [190, 372],
+    [300, 382],
+    [410, 430],
+    [530, 468],
+    [650, 452],
+    [780, 400],
+    [870, 360],
+    [928, 316],
+    [946, 278],
+    [928, 236],
+    [870, 194],
+    [780, 166],
+    [220, 166],
+    [130, 194],
+    [72, 236],
+    [54, 278],
+    [72, 316],
+    [130, 360],
+  ];
   return {
     id: 'talladega',
-    d: catmullClosed(pts),
-    innerD: insetPath(pts, 0.9),
-    sf: { x: 612, y: 430, angle: -6 },
+    d: polyClosed(pts),
+    innerD: insetPoly(pts, 0.9),
+    sharp: true,
+    sf: { x: 620, y: 456, angle: -10 },
     turns: [
-      { id: 'T1', x: 868, y: 348 },
-      { id: 'T2', x: 868, y: 208 },
-      { id: 'T3', x: 132, y: 208 },
-      { id: 'T4', x: 132, y: 348 },
+      { id: 'T1', x: 960, y: 330 },
+      { id: 'T2', x: 960, y: 188 },
+      { id: 'T3', x: 40, y: 188 },
+      { id: 'T4', x: 40, y: 330 },
     ],
     extras: [
       {
-        d: 'M 430 428 Q 500 452 620 430',
+        d: 'M 400 436 L 560 454 L 720 440',
         kind: 'accent',
         label: 'TRI-OVAL 2.66 MI',
         labelX: 500,
-        labelY: 488,
+        labelY: 492,
       },
     ],
     lengthMiles: 2.66,
@@ -575,41 +587,35 @@ function buildMartinsville(): TrackShapeDef {
 }
 
 function buildHomestead(): TrackShapeDef {
-  // True stadium oval after the 2003 variable-bank rebuild — not a D, not a quad.
-  // Progressive 18–20°. Most elliptical of the 1.5s on this desk.
+  // True oval after the 2003 variable-bank rebuild — continuous ellipse, not a
+  // D or quad. Progressive 18–20° shown as concentric rings (move-up-the-fence).
   // Refs: Wikipedia Homestead-Miami; Building Speed: “Homestead actually is oval shaped.”
-  const pts = triOvalPoints({
-    cx: 500,
-    cy: 280,
-    rx: 248,
-    ry: 178,
-    bulge: 4,
-    pointed: 0,
-    backFlat: 0,
-    steps: 48,
-  });
+  const cx = 500;
+  const cy = 278;
+  const rx = 248;
+  const ry = 168;
   return {
     id: 'homestead',
-    d: catmullClosed(pts),
-    innerD: insetPath(pts, 0.88),
-    sf: { x: 500, y: 456, angle: 0 },
+    d: ellipseRing(cx, cy, rx, ry),
+    innerD: ellipseRing(cx, cy, rx * 0.84, ry * 0.84),
+    sf: { x: 500, y: 446, angle: 0 },
     turns: [
-      { id: 'T1', x: 768, y: 372 },
-      { id: 'T2', x: 768, y: 188 },
-      { id: 'T3', x: 232, y: 188 },
-      { id: 'T4', x: 232, y: 372 },
+      { id: 'T1', x: 770, y: 370 },
+      { id: 'T2', x: 770, y: 186 },
+      { id: 'T3', x: 230, y: 186 },
+      { id: 'T4', x: 230, y: 370 },
     ],
     extras: [
       {
-        d: 'M 300 200 Q 500 168 700 200',
+        d: ellipseRing(cx, cy, rx * 0.92, ry * 0.92),
         kind: 'accent',
-        label: 'PROG. BANKS',
-        labelX: 178,
-        labelY: 168,
+        label: 'PROG. 18–20°',
+        labelX: 500,
+        labelY: 278,
       },
     ],
     lengthMiles: 1.5,
-    geometryNote: '1.5-mi true oval · progressive 18–20° · not a D or quad',
+    geometryNote: '1.5-mi true oval · progressive 18–20° rings · not a D or quad',
     reference:
       'Wikipedia Homestead-Miami Speedway (variable-bank oval post-2003); Building Speed taxonomy: Homestead is the oval-shaped 1.5, unlike Kansas/Vegas D or Charlotte quad',
   };
