@@ -19,6 +19,8 @@ NASCAR + IndyCar news hub with live headlines, a weekly **Cup Race Debrief**, **
 - `/drivers/[slug]` — biographies for the official 2026 Cup top 10 after Loudon, plus Bubba Wallace (P14, Loudon runner-up)
 - `/drivers/kyle-larson` — Kyle Larson biography (childhood, family, career, dirt-track résumé) + live Loudon card while the Dollar Tree 301 is green
 - `/pit-strategy` — Pit Strategy Calculator (per-track presets; seeds from the live Dollar Tree 301 window when Loudon is green — laps remaining, leader, pit log — otherwise the full 301-lap NHMS preset)
+- `/tracks` — Chase 2026 track desk (10 venues, SVG layouts, last 10 Cup winners)
+- `/tracks/[slug]` — per-track booth page (Darlington through Homestead)
 - `/track-types` — educational guide to short tracks, flat miles, intermediates, superspeedways, road courses
 
 ## SEO
@@ -70,6 +72,9 @@ NASCAR + IndyCar news hub with live headlines, a weekly **Cup Race Debrief**, **
 - `lib/pit-strategy.ts` — per-track presets (pace/deg/pit loss/distance/fuel) + stint/fuel math
 - `components/pit-strategy-calculator.tsx` — strategy desk UI + chart
 - `components/berry-vs-optimal.tsx` — Berry's actual Loudon stops vs calculator Optimal Stint
+- `lib/tracks.ts` — Chase 2026 track desks (specs, history, verified Cup winners)
+- `components/tracks-index.tsx` + `components/track-desk.tsx` + `components/track-infographic.tsx` — `/tracks` UI
+- `components/tracks-cta.tsx` — homepage teaser to `/tracks`
 - `lib/track-types.ts` — track category copy + examples
 - `components/track-types-guide.tsx` — Track Types educational page
 - `lib/seo.ts` / `lib/site.ts` — metadata helpers + site constants

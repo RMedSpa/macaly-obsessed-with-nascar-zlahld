@@ -95,6 +95,15 @@
       "images": "https://nascarobsessed.macaly.app/og.jpg"
     }
   },
+  "/tracks": {
+    "title": "Cup Track Desk | Chase 2026 Layouts",
+    "description": "Ten Chase tracks with booth graphics, specs, history, and last 10 Cup winners. Darlington to Homestead. Fan desk on nascarlove.org.",
+    "openGraph": {
+      "title": "Cup Track Desk | Obsessed with NASCAR",
+      "description": "Infographics and verified Cup winners for the 2026 Chase map. Not affiliated with NASCAR.",
+      "images": "https://nascarobsessed.macaly.app/og.jpg"
+    }
+  },
   "/track-types": {
     "title": "NASCAR Track Types Guide | Ovals & Roads",
     "description": "Learn NASCAR short tracks, flat miles like New Hampshire, intermediates, superspeedways, and road courses, plus banking and pit strategy.",

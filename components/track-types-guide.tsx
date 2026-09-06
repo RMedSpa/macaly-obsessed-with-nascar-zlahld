@@ -255,10 +255,16 @@ export default function TrackTypesGuide() {
           </div>
           <div className="flex flex-wrap gap-3">
             <Link
-              href="/pit-strategy"
+              href="/tracks"
               className="font-oswald text-sm tracking-wider uppercase px-5 py-3 rounded-lg bg-nascar-red text-white hover:opacity-90 transition-opacity"
             >
-              Pit Strategy Calculator →
+              Chase track desks →
+            </Link>
+            <Link
+              href="/pit-strategy"
+              className="font-oswald text-sm tracking-wider uppercase px-5 py-3 rounded-lg border border-border bg-card hover:border-nascar-blue hover:text-nascar-blue transition-colors"
+            >
+              Pit Strategy Calculator
             </Link>
             <Link
               href="/beginners"

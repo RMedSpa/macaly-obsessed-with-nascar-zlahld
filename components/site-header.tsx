@@ -12,7 +12,7 @@ const NAV_LINKS = [
   { label: 'Trivia', href: '/trivia', color: 'hover:text-strategy-cyan' },
   { label: 'Beginners', href: '/beginners', color: 'hover:text-nascar-red' },
   { label: 'iRacing', href: '/iracing', color: 'hover:text-strategy-cyan' },
-  { label: 'Tracks', href: '/track-types', color: 'hover:text-nascar-blue' },
+  { label: 'Tracks', href: '/tracks', color: 'hover:text-nascar-blue' },
   { label: 'Pit Strat', href: '/pit-strategy', color: 'hover:text-strategy-cyan' },
   { label: 'TV Guide', href: '/#tv-guide', color: 'hover:text-nascar-red' },
   { label: 'Schedule', href: '/#schedule', color: 'hover:text-nascar-blue' },

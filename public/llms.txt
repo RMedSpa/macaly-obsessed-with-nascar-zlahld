@@ -24,6 +24,7 @@ Obsessed with NASCAR covers the NASCAR Cup Series, NASCAR O'Reilly Auto Parts Se
 - [Bubba Wallace](https://nascarobsessed.macaly.app/drivers/bubba-wallace): #23 23XI, Loudon runner-up, 14th after Loudon
 - [iRacing Tips](https://nascarobsessed.macaly.app/iracing): Oval race craft for NASCAR fans on iRacing
 - [Pit Strategy Calculator](https://nascarobsessed.macaly.app/pit-strategy): Track presets, fuel windows, and stint math
+- [Tracks Desk](https://www.nascarlove.org/tracks): 2026 Chase track pages — layouts, specs, last 10 Cup winners
 - [Track Types](https://nascarobsessed.macaly.app/track-types): Short tracks through superspeedways and road courses
 
 ## Key sections on the homepage

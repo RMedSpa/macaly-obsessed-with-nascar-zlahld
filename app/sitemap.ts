@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { cupDriverSlugs } from '@/lib/cup-top10-drivers';
 import { legendDriverSlugs } from '@/lib/nascar-legends';
+import { trackSlugs } from '@/lib/tracks';
 import { SITE_URL } from '@/lib/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -59,6 +60,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.75,
     },
+    {
+      url: `${SITE_URL}/tracks`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    ...trackSlugs().map((slug) => ({
+      url: `${SITE_URL}/tracks/${slug}`,
+      lastModified,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    })),
     {
       url: `${SITE_URL}/track-types`,
       lastModified,
