@@ -1,0 +1,242 @@
+{
+  "default": {
+    "title": "Obsessed with NASCAR | Racing News Hub",
+    "description": "NASCAR and IndyCar news, Cup standings, TV guide, schedules, Driver Hub, and a NASCAR for Beginners guide.",
+    "openGraph": {
+      "images": "https://nascarobsessed.macaly.app/og.jpg"
+    }
+  },
+  "/garage": {
+    "title": "Love Garage | Obsessed with NASCAR",
+    "description": "Bring your own car. Call the pits. Stack up against the field in the Love Garage crew-chief game."
+  },
+  "/garage/car": {
+    "title": "Your Car | Love Garage",
+    "description": "Build or edit your Love Garage car. One car per member."
+  },
+  "/garage/race": {
+    "title": "Race HQ | Love Garage",
+    "description": "Call stay out, two, four, or fuel from the Love Garage pit box."
+  },
+  "/garage/board": {
+    "title": "Love Garage Race Board | NASCAR Crew Game",
+    "description": "Love Garage running order, owner-entered Cup top 10, and the Love Garage Chase."
+  },
+  "/garage/rules": {
+    "title": "How Scoring Works | Love Garage",
+    "description": "Plain-English Love Garage scoring: ghost cars, caution bunch, and season points."
+  },
+  "/garage/admin": {
+    "title": "Owner Desk | Love Garage",
+    "description": "Owner desk for Love Garage race status, laps, and official results."
+  },
+  "/trivia": {
+    "title": "Trivia Night | Obsessed with NASCAR",
+    "description": "Five questions. No caution laps. Daily 5 drop at 6 a.m. Mountain on nascarlove.org."
+  },
+  "/trivia/play": {
+    "title": "Play Trivia Night Daily 5 | NASCAR Fan Quiz",
+    "description": "A 20-second booth quiz. Daily 5 plus Chase packs. Fan quiz, not an official contest."
+  },
+  "/trivia/board": {
+    "title": "Trivia Night Chase Board | Daily 5 Rankings",
+    "description": "Today’s top 20 and the Trivia Night season board. Practice does not count."
+  },
+  "/trivia/rules": {
+    "title": "How Scoring Works | Trivia Night",
+    "description": "Daily 5 scoring, Chase packs, and Mountain-time rules for Trivia Night."
+  },
+  "/trivia/admin": {
+    "title": "Owner Desk | Trivia Night",
+    "description": "Owner desk to publish Daily 5 and Chase packs for Trivia Night."
+  },
+  "/": {
+    "title": "Reddick Pole | Obsessed with NASCAR",
+    "description": "Cup qualifying canceled at Darlington. Tyler Reddick on the metric pole. Kvapil poles the Fleetio 200.",
+    "openGraph": {
+      "title": "Reddick Pole | Obsessed with NASCAR",
+      "description": "Lightning canceled Cup qualifying. Reddick on the metric pole. Kvapil poles the Fleetio 200 Sunday Southern 500 on USA.",
+      "images": "https://nascarobsessed.macaly.app/og.jpg"
+    }
+  },
+  "/beginners": {
+    "title": "NASCAR for Beginners | Cup Teams, Drivers & Tracks",
+    "description": "New to NASCAR? Learn how races work, explore Cup Series teams and drivers, and get plain-English guides to the tracks Cup races most often.",
+    "openGraph": {
+      "title": "NASCAR for Beginners | Obsessed with NASCAR",
+      "description": "Cup teams, driver breakdowns, track guides, and beginner race tips — a fan-friendly starter kit.",
+      "images": "https://nascarobsessed.macaly.app/og.jpg"
+    }
+  },
+  "/iracing": {
+    "title": "iRacing Tips & Cup Setup Starters | Obsessed with NASCAR",
+    "description": "iRacing tips for NASCAR fans plus Cup setup starters by track: bias, pressures, bars, wedge, and tight/loose fixes from short tracks to superspeedways.",
+    "openGraph": {
+      "title": "iRacing Tips & Cup Setups | Obsessed with NASCAR",
+      "description": "Oval race craft plus per-track Cup garage starters — quick wins, ladder, traffic IQ, and first-click setup boards.",
+      "images": "https://nascarobsessed.macaly.app/og.jpg"
+    }
+  },
+  "/drivers": {
+    "title": "Your Driver Hub | Obsessed with NASCAR",
+    "description": "Top 10 Cup bios, NASCAR Legends with Dale Earnhardt and Kyle Busch, plus news, videos, and social posts.",
+    "openGraph": {
+      "title": "Your Driver Hub | Obsessed with NASCAR",
+      "description": "2026 Cup top 10 plus NASCAR Legends: Dale Earnhardt and Kyle Busch full stories.",
+      "images": "https://nascarobsessed.macaly.app/og.jpg"
+    }
+  },
+  "/pit-strategy": {
+    "title": "Pit Strategy Calculator | Live Loudon 301",
+    "description": "Berry leads Stage 3 at Loudon with ~102 to go. Model Magic Mile stints, the 88-lap tank, and the Stage 2 pit log.",
+    "openGraph": {
+      "title": "Pit Strategy Calculator · Live Loudon",
+      "description": "Josh Berry leads the Dollar Tree 301 with ~102 laps left. Stage 2 pit log plus Magic Mile tire and fuel math.",
+      "images": "https://nascarobsessed.macaly.app/og.jpg"
+    }
+  },
+  "/track-types": {
+    "title": "NASCAR Track Types Guide | Ovals & Roads",
+    "description": "Learn NASCAR short tracks, flat miles like New Hampshire, intermediates, superspeedways, and road courses, plus banking and pit strategy.",
+    "openGraph": {
+      "title": "NASCAR Track Types Guide | Obsessed with NASCAR",
+      "description": "Short tracks to superspeedways and road courses — including New Hampshire’s Magic Mile flat-mile profile.",
+      "images": "https://nascarobsessed.macaly.app/og.jpg"
+    }
+  },
+  "/chase": {
+    "title": "NASCAR Cup Chase Desk | Top 16 Points Cut Line",
+    "description": "2026 Cup Chase desk: top 16 on points only, cut-line bubble, big win bonuses (~55 pts), and a 10-race cumulative title run.",
+    "openGraph": {
+      "title": "Cup Chase Desk | Obsessed with NASCAR",
+      "description": "No win-and-in. Who holds a top-16 points seat, who’s on the bubble, and how the 10-race Chase decides the champion.",
+      "images": "https://nascarobsessed.macaly.app/og.jpg"
+    }
+  },
+  "/2027-schedule": {
+    "title": "2027 NASCAR Schedule | Cup, O’Reilly, Trucks",
+    "description": "Confirmed 2027 NASCAR dates for Cup, O’Reilly, and Trucks — Daytona 500 Feb. 21, San Diego Aug. 1, Homestead Nov. 14.",
+    "openGraph": {
+      "title": "2027 NASCAR Schedule Desk | Obsessed with NASCAR",
+      "description": "Rolling 2027 calendar: Clash back at Daytona, Coronado street race Aug. 1, Bowman Gray Trucks, Homestead championship.",
+      "images": "https://nascarobsessed.macaly.app/og.jpg"
+    }
+  },
+  "/drivers/kyle-larson": {
+    "title": "Kyle Larson | #5 Hendrick, Two-Time Cup Champ",
+    "description": "Kyle Larson bio: Elk Grove childhood, family, Hendrick #5 career, 2 Cup titles, dirt-track wins. Live Loudon: P4 after Stage 1.",
+    "openGraph": {
+      "title": "Kyle Larson | Obsessed with NASCAR",
+      "description": "Childhood, family, Hendrick career, two Cup titles, and a dirt-track trophy case — plus a live Loudon update.",
+      "images": "https://upload.wikimedia.org/wikipedia/commons/1/18/Kyle_Larson_Las_Vegas_2026.jpg"
+    }
+  },
+  "/drivers/denny-hamlin": {
+    "title": "Denny Hamlin | #11 JGR, 64 Wins, 2026 Points Leader",
+    "description": "Denny Hamlin bio: Chesterfield roots, family, 64 Cup wins, three Daytona 500s, 23XI owner. Leads 2026 Cup points after Loudon.",
+    "openGraph": {
+      "title": "Denny Hamlin | Obsessed with NASCAR",
+      "description": "Chesterfield, 64 Cup wins, three Daytona 500s, 23XI co-owner — and the 2026 points leader after Loudon.",
+      "images": "https://upload.wikimedia.org/wikipedia/commons/2/26/Denny_Hamlin_Driver_Introductions_Las_Vegas_2026.jpg"
+    }
+  },
+  "/drivers/ryan-blaney": {
+    "title": "Ryan Blaney | #12 Penske, 2023 Champ, Loudon Winner",
+    "description": "Ryan Blaney bio: High Point roots, Blaney racing family, 2023 Cup title, Penske No. 12. Winner of the 2026 Dollar Tree 301.",
+    "openGraph": {
+      "title": "Ryan Blaney | Obsessed with NASCAR",
+      "description": "High Point kid, 2023 Cup champ, Penske No. 12 — winner of the 2026 Dollar Tree 301.",
+      "images": "https://upload.wikimedia.org/wikipedia/commons/1/19/Ryan_Blaney_Driver_Introductions_Las_Vegas_2026.jpg"
+    }
+  },
+  "/drivers/ty-gibbs": {
+    "title": "Ty Gibbs | #54 JGR, ARCA & Xfinity Champ",
+    "description": "Ty Gibbs bio: Joe Gibbs’s grandson, 2021 ARCA champ, 2022 Xfinity champ, Huntersville roots. 3rd in 2026 Cup points after Loudon.",
+    "openGraph": {
+      "title": "Ty Gibbs | Obsessed with NASCAR",
+      "description": "Joe Gibbs’s grandson, ARCA and Xfinity champion, now 3rd in 2026 Cup points in the JGR No. 54.",
+      "images": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Ty_Gibbs_Sonoma_2026.jpg"
+    }
+  },
+  "/drivers/tyler-reddick": {
+    "title": "Tyler Reddick | #45 23XI, 2026 Daytona 500 Winner",
+    "description": "Tyler Reddick bio: Corning, California roots, two Xfinity titles, 2026 Daytona 500, first three Cup wins of the year. 4th in points.",
+    "openGraph": {
+      "title": "Tyler Reddick | Obsessed with NASCAR",
+      "description": "Corning, two Xfinity titles, 2026 Daytona 500 winner — 4th in Cup points after Loudon.",
+      "images": "https://upload.wikimedia.org/wikipedia/commons/6/67/Tyler_Reddick_Driver_Introductions_Las_Vegas_2026.jpg"
+    }
+  },
+  "/drivers/christopher-bell": {
+    "title": "Christopher Bell | #20 JGR, 2017 Truck Champ",
+    "description": "Christopher Bell bio: Norman, Oklahoma dirt roots, 2017 Truck title, Joe Gibbs No. 20 Toyota. 5th in 2026 Cup points after Loudon.",
+    "openGraph": {
+      "title": "Christopher Bell | Obsessed with NASCAR",
+      "description": "Norman dirt racer, 2017 Truck champ, Joe Gibbs No. 20 — 5th in 2026 Cup points.",
+      "images": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Christopher_Bell_Las_Vegas_2026.jpg"
+    }
+  },
+  "/drivers/chase-briscoe": {
+    "title": "Chase Briscoe | #19 JGR, Back-to-Back Southern 500s",
+    "description": "Chase Briscoe bio: Mitchell, Indiana dirt roots, 2016 ARCA champ, 2024–25 Southern 500s, JGR No. 19. 6th in 2026 Cup points.",
+    "openGraph": {
+      "title": "Chase Briscoe | Obsessed with NASCAR",
+      "description": "Mitchell dirt racer, back-to-back Southern 500s, now in the JGR No. 19 — 6th in 2026 points.",
+      "images": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Chase_Briscoe_Las_Vegas_2026.jpg"
+    }
+  },
+  "/drivers/chase-elliott": {
+    "title": "Chase Elliott | #9 Hendrick, 2020 Cup Champion",
+    "description": "Chase Elliott bio: Dawsonville, Georgia roots, Bill Elliott’s son, 2014 Nationwide champ, 2020 Cup champ. 8th in 2026 points.",
+    "openGraph": {
+      "title": "Chase Elliott | Obsessed with NASCAR",
+      "description": "Dawsonville, Awesome Bill’s son, 2020 Cup champion — 8th in 2026 points after Loudon.",
+      "images": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Chase_Elliott_Driver_Introductions_Las_Vegas_2026.jpg"
+    }
+  },
+  "/drivers/chris-buescher": {
+    "title": "Chris Buescher | #17 RFK, ARCA & Xfinity Champ",
+    "description": "Chris Buescher bio: Prosper, Texas roots, 2012 ARCA champ, 2015 Xfinity champ, RFK No. 17. 10th in 2026 Cup points after Loudon.",
+    "openGraph": {
+      "title": "Chris Buescher | Obsessed with NASCAR",
+      "description": "Prosper roots, ARCA and Xfinity champion, RFK No. 17 — 10th in 2026 Cup points.",
+      "images": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Chris_Buescher_Sonoma_2026.jpg"
+    }
+  },
+  "/drivers/bubba-wallace": {
+    "title": "Bubba Wallace | #23 23XI, Talladega Winner",
+    "description": "Bubba Wallace bio: Mobile, Alabama roots, Petty No. 43, 23XI No. 23, 2021 Talladega win. 2nd at Loudon, 14th in 2026 Cup points.",
+    "openGraph": {
+      "title": "Bubba Wallace | Obsessed with NASCAR",
+      "description": "Mobile, Alabama, 23XI No. 23 — runner-up at Loudon and 14th in 2026 Cup points.",
+      "images": "https://upload.wikimedia.org/wikipedia/commons/4/47/Bubba_Wallace_Driver_Introductions_Las_Vegas_2026.jpg"
+    }
+  },
+  "/drivers/dale-earnhardt": {
+    "title": "Dale Earnhardt | 7-Time Cup Champion",
+    "description": "Dale Earnhardt bio: Kannapolis roots, 7 Cup titles, 76 wins, the 1998 Daytona 500, and the black No. 3 Chevrolet.",
+    "openGraph": {
+      "title": "Dale Earnhardt | Obsessed with NASCAR",
+      "description": "The Intimidator: Kannapolis, 7 Cup titles, 76 wins, the 1998 Daytona 500, RCR No. 3.",
+      "images": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Dale_Earnhardt_visits_Langley_AFB.jpg"
+    }
+  },
+  "/drivers/kyle-busch": {
+    "title": "Kyle Busch | Rowdy, 2-Time Cup Champion",
+    "description": "Kyle Busch bio: Las Vegas, 2 Cup titles, 234 national wins. Died May 21, 2026. RCR retired the No. 8.",
+    "openGraph": {
+      "title": "Kyle Busch | Obsessed with NASCAR",
+      "description": "Rowdy: Las Vegas, 2 Cup titles, 234 national-series wins. RCR retired the No. 8 for Brexton.",
+      "images": "https://upload.wikimedia.org/wikipedia/commons/e/eb/NASCAR_driver_Kyle_Busch_comes_to_Dover_AFB_%287%29_%28cropped%29.jpg"
+    }
+  },
+  "/drivers/joey-logano": {
+    "title": "Joey Logano | #22 Penske, Three-Time Cup Champ",
+    "description": "Joey Logano bio: Middletown, Connecticut roots, youngest Daytona 500 winner, three Cup titles, Team Penske No. 22. 9th in 2026 points.",
+    "openGraph": {
+      "title": "Joey Logano | Obsessed with NASCAR",
+      "description": "Middletown kid, three-time Cup champ, two-time Daytona 500 winner — 9th in 2026 points after Loudon.",
+      "images": "https://upload.wikimedia.org/wikipedia/commons/9/96/Joey_Logano_Driver_Introductions_Las_Vegas_2026.jpg"
+    }
+  }
+}

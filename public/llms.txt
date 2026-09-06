@@ -1,0 +1,42 @@
+# Obsessed with NASCAR
+
+> A fan-friendly NASCAR and IndyCar news hub with live headlines, standings, TV guides, race schedules, driver tools, and beginner guides.
+
+Obsessed with NASCAR covers the NASCAR Cup Series, NASCAR O'Reilly Auto Parts Series (formerly Xfinity), Craftsman Truck Series, ARCA Menards Series, and NTT IndyCar Series. Content is written for fans who want fast race-weekend info plus plain-English explainers.
+
+## Primary pages
+
+- [Home](https://nascarobsessed.macaly.app/): Live race news, countdown to the next Cup race, weekend TV guide, Cup/O'Reilly/Truck standings, Chase CTA, 2026 schedules, series news grids, featured videos, and NASCAR social directory
+- [Cup Chase Desk](https://nascarobsessed.macaly.app/chase): Provisional top-16 playoff field, win locks, cut-line bubble, remaining regular-season races, and plain-English scenarios
+- [2027 NASCAR Schedule](https://nascarobsessed.macaly.app/2027-schedule): Confirmed 2027 Cup, O’Reilly, and Truck dates — Daytona 500 Feb. 21, San Diego Aug. 1, Homestead championship weekend. Rolling release, not a finished 36-race grid.
+- [NASCAR for Beginners](https://nascarobsessed.macaly.app/beginners): How NASCAR works, Cup team and driver breakdowns, and a track guide with race styles and fan tips
+- [Driver Hub](https://nascarobsessed.macaly.app/drivers): Search Cup, O'Reilly, Truck, ARCA, and legend drivers for news, videos, and social posts. Includes the 2026 Top 10 Cup Driver bios.
+- [Kyle Larson](https://nascarobsessed.macaly.app/drivers/kyle-larson): Full bio — childhood, family, hometown, Cup career, dirt-track résumé, live Loudon card
+- [Denny Hamlin](https://nascarobsessed.macaly.app/drivers/denny-hamlin): #11 JGR, 2026 points leader
+- [Ryan Blaney](https://nascarobsessed.macaly.app/drivers/ryan-blaney): #12 Penske, Dollar Tree 301 winner
+- [Ty Gibbs](https://nascarobsessed.macaly.app/drivers/ty-gibbs): #54 JGR
+- [Tyler Reddick](https://nascarobsessed.macaly.app/drivers/tyler-reddick): #45 23XI, 2026 Daytona 500
+- [Christopher Bell](https://nascarobsessed.macaly.app/drivers/christopher-bell): #20 JGR
+- [Chase Briscoe](https://nascarobsessed.macaly.app/drivers/chase-briscoe): #19 JGR
+- [Chase Elliott](https://nascarobsessed.macaly.app/drivers/chase-elliott): #9 Hendrick, 2020 champ, 8th after Loudon
+- [Joey Logano](https://nascarobsessed.macaly.app/drivers/joey-logano): #22 Penske, three-time Cup champ, 9th after Loudon
+- [Chris Buescher](https://nascarobsessed.macaly.app/drivers/chris-buescher): #17 RFK, 10th after Loudon
+- [Bubba Wallace](https://nascarobsessed.macaly.app/drivers/bubba-wallace): #23 23XI, Loudon runner-up, 14th after Loudon
+- [iRacing Tips](https://nascarobsessed.macaly.app/iracing): Oval race craft for NASCAR fans on iRacing
+- [Pit Strategy Calculator](https://nascarobsessed.macaly.app/pit-strategy): Track presets, fuel windows, and stint math
+- [Track Types](https://nascarobsessed.macaly.app/track-types): Short tracks through superspeedways and road courses
+
+## Key sections on the homepage
+
+- Cup race debrief for the latest week
+- TV Guide for the current race weekend
+- Cup Series standings and supporting-series standings
+- Chase cut-line tracker teaser
+- NASCAR Cup and IndyCar schedule overviews
+- Latest series news for Cup, O'Reilly, Trucks, ARCA, and IndyCar
+- Featured NASCAR videos and X/Twitter account directory
+
+## Optional
+
+- [Sitemap](https://nascarobsessed.macaly.app/sitemap.xml)
+- [Robots](https://nascarobsessed.macaly.app/robots.txt)
