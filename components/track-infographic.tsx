@@ -108,6 +108,8 @@ function TrackOutline({
   showExtras: boolean;
 }) {
   const fillId = `asphalt-${shape.id}`;
+  const join = shape.sharp ? 'miter' : 'round';
+  const cap = shape.sharp ? 'butt' : 'round';
   return (
     <g>
       <defs>
@@ -116,14 +118,21 @@ function TrackOutline({
           <stop offset="100%" stopColor="#121821" />
         </linearGradient>
       </defs>
-      <path d={shape.d} fill={`url(#${fillId})`} stroke="#2a3548" strokeWidth="10" />
+      <path
+        d={shape.d}
+        fill={`url(#${fillId})`}
+        stroke="#2a3548"
+        strokeWidth="10"
+        strokeLinejoin={join}
+      />
       <path
         d={shape.d}
         fill="none"
         stroke="#c8d0dc"
         strokeWidth="2.4"
-        strokeLinejoin="round"
-        strokeLinecap="round"
+        strokeLinejoin={join}
+        strokeLinecap={cap}
+        strokeMiterlimit={3}
       />
       {shape.innerD && (
         <path
@@ -131,7 +140,7 @@ function TrackOutline({
           fill="none"
           stroke={accent}
           strokeWidth={shape.id === 'bristol' ? 3.2 : 1.35}
-          strokeLinejoin="round"
+          strokeLinejoin={join}
           opacity={shape.id === 'bristol' ? 0.55 : 0.35}
         />
       )}
@@ -144,8 +153,8 @@ function TrackOutline({
               stroke={extra.kind === 'ghost' ? '#9aa4bc' : accent}
               strokeWidth={extra.kind === 'ghost' ? 1.8 : 2.4}
               strokeDasharray={extra.kind === 'ghost' ? '5 6' : undefined}
-              strokeLinejoin="round"
-              strokeLinecap="round"
+              strokeLinejoin={join}
+              strokeLinecap={cap}
               opacity={extra.kind === 'ghost' ? 0.55 : 0.9}
             />
             {extra.label && extra.labelX != null && extra.labelY != null && (
