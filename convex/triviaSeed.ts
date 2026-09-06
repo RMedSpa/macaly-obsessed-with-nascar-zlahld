@@ -34,7 +34,7 @@ export const STARTER_QUESTIONS = [
     prompt: "Where does the 2026 Cup Chase start?",
     answers: ["Daytona", "Darlington", "Bristol", "Homestead-Miami"],
     correctIndex: 1,
-    explain: "The Southern 500 on Sept 6, 2026 opens the 10-race Chase.",
+    explain: "The Southern 500 at Darlington is Chase race 1 of 10 (Sept 6, 2026).",
     pack: "daily" as const,
     category: "season2026" as const,
     difficulty: "medium" as const,

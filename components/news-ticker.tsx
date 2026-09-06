@@ -1,16 +1,16 @@
 const TICKER_SEGMENTS = [
-  "CUP QUALIFYING CANCELED: Lightning at Darlington. Metric grid is posted.",
-  "Southern 500 pole: Tyler Reddick #45 · Suárez P2 · Preece P3 · Hamlin P4",
-  "O'REILLY QUALIFYING FINAL: Carson Kvapil #1 on pole for the Fleetio 200 — 30.424 / 161.636 mph",
-  "Allgaier P2 · Brandon Jones P3 · Jesse Love P4 · Sam Mayer P5",
-  "Fleetio 200 tonight 7:30 p.m. ET on The CW · 147 laps at the Lady in Black",
-  "Southern 500 Sunday 5 p.m. ET on USA · 367 laps · Cup Chase opener",
-  "CUP QUALIFYING CANCELED: Lightning at Darlington. Metric grid is posted.",
-  "Southern 500 pole: Tyler Reddick #45 · Suárez P2 · Preece P3 · Hamlin P4",
-  "O'REILLY QUALIFYING FINAL: Carson Kvapil #1 on pole for the Fleetio 200 — 30.424 / 161.636 mph",
-  "Allgaier P2 · Brandon Jones P3 · Jesse Love P4 · Sam Mayer P5",
-  "Fleetio 200 tonight 7:30 p.m. ET on The CW · 147 laps at the Lady in Black",
-  "Southern 500 Sunday 5 p.m. ET on USA · 367 laps · Cup Chase opener",
+  "LIVE: Cook Out Southern 500 · Chase race 1 of 10 · Darlington",
+  "GREEN / LIVE · metric grid · Reddick #45 pole · Suárez P2 · Preece P3 · Hamlin P4",
+  "Winner TBD after checkered — this desk is not inventing a lap leader",
+  "CHECKERED: Sheldon Creed wins the Fleetio 200 · Haas Factory #00 Chevrolet",
+  "Creed — 2nd career O'Reilly win · 2nd of 2026 · first non-superspeedway win",
+  "Chase after Darlington · Creed 2nd, ~7 behind Allgaier · 8 races left",
+  "LIVE: Cook Out Southern 500 · Chase race 1 of 10 · Darlington",
+  "GREEN / LIVE · metric grid · Reddick #45 pole · Suárez P2 · Preece P3 · Hamlin P4",
+  "Winner TBD after checkered — this desk is not inventing a lap leader",
+  "CHECKERED: Sheldon Creed wins the Fleetio 200 · Haas Factory #00 Chevrolet",
+  "Creed — 2nd career O'Reilly win · 2nd of 2026 · first non-superspeedway win",
+  "Chase after Darlington · Creed 2nd, ~7 behind Allgaier · 8 races left",
 ];
 
 export default function NewsTicker() {
@@ -26,7 +26,7 @@ export default function NewsTicker() {
       {/* Label pill */}
       <div className="absolute left-0 top-0 h-full flex items-center bg-black/50 px-2 sm:px-3 z-20 border-r border-white/20">
         <span className="font-oswald font-700 text-white text-[10px] sm:text-xs tracking-[0.15em] sm:tracking-[0.2em] uppercase whitespace-nowrap">
-          DELAY
+          LIVE
         </span>
       </div>
 

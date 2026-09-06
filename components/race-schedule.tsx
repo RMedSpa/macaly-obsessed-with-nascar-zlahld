@@ -5,7 +5,7 @@ interface Race {
   name: string;
   track: string;
   tv: string;
-  status: 'completed' | 'upcoming' | 'next';
+  status: 'completed' | 'upcoming' | 'next' | 'live';
   winner?: string;
 }
 
@@ -20,8 +20,9 @@ const NASCAR_2026: Race[] = [
   { date: 'Jul 26', name: 'Brickyard 400',               track: 'Indianapolis Motor Speedway',    tv: 'TNT',       status: 'completed', winner: 'Corey Heim' },
   { date: 'Aug 9',  name: 'Iowa Corn 350',               track: 'Iowa Speedway',                  tv: 'USA',       status: 'completed', winner: 'Ty Gibbs' },
   { date: 'Aug 15', name: 'Cook Out 400',                track: 'Richmond Raceway',               tv: 'USA',       status: 'completed', winner: 'Joey Logano' },
-  { date: 'Aug 23', name: 'Dollar Tree 301',             track: 'New Hampshire Motor Speedway',   tv: 'USA',       status: 'next' },
-  { date: 'Aug 29', name: 'Coke Zero Sugar 400',         track: 'Daytona International Speedway', tv: 'NBC',       status: 'upcoming' },
+  { date: 'Aug 23', name: 'Dollar Tree 301',             track: 'New Hampshire Motor Speedway',   tv: 'USA',       status: 'completed', winner: 'Ryan Blaney' },
+  { date: 'Aug 29', name: 'Coke Zero Sugar 400',         track: 'Daytona International Speedway', tv: 'NBC',       status: 'completed', winner: 'Ryan Preece' },
+  { date: 'Sep 6',  name: 'Cook Out Southern 500',       track: 'Darlington Raceway',             tv: 'USA',       status: 'live' },
 ];
 
 const INDYCAR_2026: Race[] = [
@@ -33,29 +34,31 @@ const INDYCAR_2026: Race[] = [
   { date: 'Jul 20', name: 'Borchetta Bourbon Music City GP',  track: 'Nashville Superspeedway',         tv: 'FOX', status: 'completed', winner: 'Alex Palou' },
   { date: 'Aug 9',  name: 'OnlyBulls GP of Portland',         track: 'Portland International Raceway',  tv: 'FOX', status: 'completed', winner: 'Alex Palou' },
   { date: 'Aug 16', name: 'Ontario Honda Dealers Indy',       track: 'Streets of Markham, Ontario',     tv: 'FOX', status: 'completed', winner: 'Marcus Ericsson' },
-  { date: 'Aug 23', name: 'Freedom 250 Grand Prix',           track: 'Streets of Washington, D.C.',     tv: 'FOX', status: 'next' },
-  { date: 'Aug 29', name: 'Snap-on Makers and Fixers 250',    track: 'Milwaukee Mile',                  tv: 'FOX', status: 'upcoming' },
-  { date: 'Aug 30', name: 'Snap-on Milwaukee Mile 250',       track: 'Milwaukee Mile',                  tv: 'FOX', status: 'upcoming' },
-  { date: 'Sep 6',  name: 'Grand Prix of Monterey',           track: 'WeatherTech Raceway Laguna Seca', tv: 'FOX', status: 'upcoming' },
+  { date: 'Aug 23', name: 'Freedom 250 Grand Prix',           track: 'Streets of Washington, D.C.',     tv: 'FOX', status: 'completed' },
+  { date: 'Aug 29', name: 'Snap-on Makers and Fixers 250',    track: 'Milwaukee Mile',                  tv: 'FOX', status: 'completed' },
+  { date: 'Aug 30', name: 'Snap-on Milwaukee Mile 250',       track: 'Milwaukee Mile',                  tv: 'FOX', status: 'completed' },
+  { date: 'Sep 6',  name: 'Grand Prix of Monterey',           track: 'WeatherTech Raceway Laguna Seca', tv: 'FOX', status: 'next' },
 ];
 
 function RaceRow({ race }: { race: Race }) {
   const isNext = race.status === 'next';
+  const isLive = race.status === 'live';
   const isDone = race.status === 'completed';
+  const highlight = isNext || isLive;
 
   return (
     <div
       className={`flex items-start sm:items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 border-b border-border/50 last:border-0 transition-colors
-        ${isNext ? 'bg-nascar-red/10 border-l-2 border-l-nascar-red' : ''}
-        ${isDone ? 'opacity-50' : isNext ? '' : 'hover:bg-secondary/50'}
+        ${highlight ? 'bg-nascar-red/10 border-l-2 border-l-nascar-red' : ''}
+        ${isDone ? 'opacity-50' : highlight ? '' : 'hover:bg-secondary/50'}
       `}
     >
-      <div className={`w-12 sm:w-14 flex-shrink-0 font-oswald text-[11px] sm:text-xs tracking-wide pt-0.5 ${isDone ? 'text-muted-foreground' : isNext ? 'text-nascar-blue' : 'text-foreground/80'}`}>
+      <div className={`w-12 sm:w-14 flex-shrink-0 font-oswald text-[11px] sm:text-xs tracking-wide pt-0.5 ${isDone ? 'text-muted-foreground' : highlight ? 'text-nascar-blue' : 'text-foreground/80'}`}>
         {race.date}
       </div>
 
       <div className="flex-1 min-w-0">
-        <p className={`font-oswald font-500 text-xs sm:text-sm leading-tight ${isDone ? 'text-muted-foreground' : isNext ? 'text-foreground font-semibold' : 'text-foreground/90'}`}>
+        <p className={`font-oswald font-500 text-xs sm:text-sm leading-tight ${isDone ? 'text-muted-foreground' : highlight ? 'text-foreground font-semibold' : 'text-foreground/90'}`}>
           {race.name}
         </p>
         <p className="font-oswald text-[11px] sm:text-xs text-muted-foreground truncate">{race.track}</p>
@@ -63,6 +66,11 @@ function RaceRow({ race }: { race: Race }) {
           <span className="font-oswald text-[10px] tracking-wider text-muted-foreground uppercase">
             {race.tv}
           </span>
+          {isLive && (
+            <span className="font-oswald font-700 tracking-wider text-[10px] bg-nascar-red text-white px-1.5 py-0.5 rounded-sm uppercase">
+              LIVE
+            </span>
+          )}
           {isNext && (
             <span className="font-oswald font-700 tracking-wider text-[10px] bg-nascar-red text-white px-1.5 py-0.5 rounded-sm uppercase">
               NEXT
@@ -81,6 +89,11 @@ function RaceRow({ race }: { race: Race }) {
       </span>
 
       <div className="hidden sm:block flex-shrink-0 min-w-[64px] text-right">
+        {isLive && (
+          <span className="font-oswald font-700 tracking-wider text-xs bg-nascar-red text-white px-2 py-0.5 rounded-sm uppercase">
+            LIVE
+          </span>
+        )}
         {isNext && (
           <span className="font-oswald font-700 tracking-wider text-xs bg-nascar-red text-white px-2 py-0.5 rounded-sm uppercase">
             NEXT

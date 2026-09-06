@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  calendarRaceChip,
   getNextCalendarRace,
   getTrack,
   trackSlugs,
@@ -35,6 +36,7 @@ describe('tracks desk data', () => {
   it('does not invent a 2026 Southern 500 winner', () => {
     const darlington = getTrack('darlington');
     expect(darlington?.winners.some((w) => w.year === 2026 && w.race.includes('Southern'))).toBe(false);
+    expect(darlington?.calendar2026[0]?.status).toBe('live');
   });
 
   it('lists only four Gateway Cup winners through 2025', () => {
@@ -46,5 +48,8 @@ describe('tracks desk data', () => {
     expect(darlington).toBeTruthy();
     const next = getNextCalendarRace(darlington!, new Date('2026-09-06T12:00:00'));
     expect(next?.name).toBe('Cook Out Southern 500');
+    const chip = calendarRaceChip(next);
+    expect(chip?.live).toBe(true);
+    expect(chip?.kicker).toMatch(/LIVE/i);
   });
 });

@@ -24,7 +24,7 @@ export default function TracksCta() {
         </h2>
         <p className="mt-3 max-w-xl font-oswald text-base text-white/65 leading-relaxed">
           Darlington through Homestead — egg, paperclip, dogleg, Dega. Infographic, last 10 Cup
-          winners, Mountain-time next date. {names.join(' · ')}…
+          winners. Darlington is LIVE today. {names.join(' · ')}…
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link

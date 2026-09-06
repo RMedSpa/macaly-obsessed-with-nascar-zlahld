@@ -51,11 +51,11 @@
     "description": "Owner desk to publish Daily 5 and Chase packs for Trivia Night."
   },
   "/": {
-    "title": "Reddick Pole | Obsessed with NASCAR",
-    "description": "Cup qualifying canceled at Darlington. Tyler Reddick on the metric pole. Kvapil poles the Fleetio 200.",
+    "title": "Southern 500 LIVE | Obsessed with NASCAR",
+    "description": "Cook Out Southern 500 is LIVE at Darlington. Chase race 1 of 10. Sheldon Creed checkered the Fleetio 200.",
     "openGraph": {
-      "title": "Reddick Pole | Obsessed with NASCAR",
-      "description": "Lightning canceled Cup qualifying. Reddick on the metric pole. Kvapil poles the Fleetio 200 Sunday Southern 500 on USA.",
+      "title": "Southern 500 LIVE | Obsessed with NASCAR",
+      "description": "Chase opener under green at Darlington. Metric grid, Reddick pole. Creed wins the Fleetio 200.",
       "images": "https://nascarobsessed.macaly.app/og.jpg"
     }
   },
@@ -114,11 +114,11 @@
     }
   },
   "/chase": {
-    "title": "NASCAR Cup Chase Desk | Top 16 Points Cut Line",
-    "description": "2026 Cup Chase desk: top 16 on points only, cut-line bubble, big win bonuses (~55 pts), and a 10-race cumulative title run.",
+    "title": "Cup Chase Desk | Race 1 of 10 LIVE",
+    "description": "2026 Cup Chase is underway. Race 1 of 10: Southern 500 at Darlington. Field locked after Daytona.",
     "openGraph": {
       "title": "Cup Chase Desk | Obsessed with NASCAR",
-      "description": "No win-and-in. Who holds a top-16 points seat, who’s on the bubble, and how the 10-race Chase decides the champion.",
+      "description": "Chase underway — Southern 500 is race 1 of 10. Field locked after Daytona. Highest 10-race total wins the Cup.",
       "images": "https://nascarobsessed.macaly.app/og.jpg"
     }
   },

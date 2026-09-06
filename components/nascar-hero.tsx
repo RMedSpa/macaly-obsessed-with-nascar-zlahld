@@ -45,10 +45,10 @@ export default function NascarHero() {
 
           {/* Left: headline */}
           <div>
-            <div className="inline-flex items-center gap-2 border border-strategy-yellow/50 rounded-full px-3 py-1 mb-4 sm:mb-5 bg-strategy-yellow/15">
-              <span className="w-2 h-2 rounded-full bg-strategy-yellow flex-shrink-0 pulse-dot" />
-              <span className="font-oswald font-600 tracking-[0.2em] text-strategy-yellow text-xs uppercase">
-                Rain delay · Darlington
+            <div className="inline-flex items-center gap-2 border border-nascar-red/50 rounded-full px-3 py-1 mb-4 sm:mb-5 bg-nascar-red/15">
+              <span className="w-2 h-2 rounded-full bg-nascar-red flex-shrink-0 pulse-dot" />
+              <span className="font-oswald font-600 tracking-[0.2em] text-nascar-red text-xs uppercase">
+                LIVE · Southern 500
               </span>
             </div>
 
@@ -65,7 +65,7 @@ export default function NascarHero() {
               Cup · O&apos;Reilly · Trucks · ARCA · NTT IndyCar
             </p>
             <p className="font-oswald text-white/80 text-sm sm:text-base tracking-wide mb-5 sm:mb-7">
-              Cup qualifying canceled at Darlington. Tyler Reddick starts the Southern 500 from the metric pole. O&apos;Reilly: Carson Kvapil on pole for tonight&apos;s Fleetio 200.
+              Cook Out Southern 500 is LIVE at Darlington — Chase race 1 of 10, metric grid, Reddick on the pole. Winner TBD after checkered. Saturday: Sheldon Creed checkered the Fleetio 200.
             </p>
 
             {/* Series badges */}

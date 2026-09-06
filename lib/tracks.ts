@@ -46,6 +46,8 @@ export type TrackCalendarRace = {
   tv: string;
   chase: boolean;
   layout?: string;
+  /** Race-day desk flag — do not invent a winner when live. */
+  status?: 'upcoming' | 'live' | 'complete';
 };
 
 export type CupTrackProfile = {
@@ -133,6 +135,7 @@ export const TRACKS: CupTrackProfile[] = [
         dateLabel: 'Sun Sep 6, 3:00 PM MDT',
         tv: 'USA Network',
         chase: true,
+        status: 'live',
       },
     ],
     accent: 'red',
@@ -594,12 +597,33 @@ export function getNextCalendarRace(
     track.calendar2026.find((r) => {
       const d = new Date(r.date);
       return (
-        d.getFullYear() === now.getFullYear() &&
-        d.getMonth() === now.getMonth() &&
-        d.getDate() === now.getDate()
+        r.status === 'live' ||
+        (d.getFullYear() === now.getFullYear() &&
+          d.getMonth() === now.getMonth() &&
+          d.getDate() === now.getDate())
       );
     }) ?? null
   );
+}
+
+export function calendarRaceChip(race: TrackCalendarRace | null): {
+  kicker: string;
+  detail: string;
+  live: boolean;
+} | null {
+  if (!race) return null;
+  if (race.status === 'live') {
+    return {
+      kicker: 'LIVE · race day',
+      detail: `${race.name} · ${race.dateLabel}`,
+      live: true,
+    };
+  }
+  return {
+    kicker: 'Next',
+    detail: `${race.name} · ${race.dateLabel}`,
+    live: false,
+  };
 }
 
 /** Match a schedule row to a track desk when names overlap. */

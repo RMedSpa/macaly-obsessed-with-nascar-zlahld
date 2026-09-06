@@ -3,7 +3,8 @@ import Link from "next/link";
 interface StandingRow {
   pos: number;
   driver: string;
-  pts: number;
+  pts?: number;
+  ptsLabel?: string;
   delta: string;
   team?: string;
 }
@@ -23,16 +24,8 @@ const CUP_STANDINGS: StandingRow[] = [
 ];
 
 const XFINITY_STANDINGS: StandingRow[] = [
-  { pos: 1,  driver: "Justin Allgaier",  pts: 1048, delta: "LEADER" },
-  { pos: 2,  driver: "Carson Kvapil",     pts: 810,  delta: "-238" },
-  { pos: 3,  driver: "Sheldon Creed",     pts: 782,  delta: "-266" },
-  { pos: 4,  driver: "Jesse Love",        pts: 749,  delta: "-299" },
-  { pos: 5,  driver: "Corey Day",         pts: 727,  delta: "-321" },
-  { pos: 6,  driver: "Brandon Jones",     pts: 718,  delta: "-330" },
-  { pos: 7,  driver: "Austin Hill",       pts: 716,  delta: "-332" },
-  { pos: 8,  driver: "Sammy Smith",       pts: 692,  delta: "-356" },
-  { pos: 9,  driver: "Parker Retzlaff",   pts: 643,  delta: "-405" },
-  { pos: 10, driver: "Sam Mayer",         pts: 616,  delta: "-432" },
+  { pos: 1, driver: "Justin Allgaier", ptsLabel: "—", delta: "LEADER" },
+  { pos: 2, driver: "Sheldon Creed", ptsLabel: "—", delta: "~7" },
 ];
 
 const TRUCK_STANDINGS: StandingRow[] = [
@@ -62,10 +55,10 @@ interface StandingsTableProps {
 function StandingsTable({
   id, icon, title, subtitle, rows, showTeam = false, borderAccent,
 }: StandingsTableProps) {
-  const maxPts = rows[0].pts;
-  const gridClass = showTeam
-    ? 'grid-cols-[28px_minmax(0,1fr)_56px_48px] sm:grid-cols-[36px_minmax(0,1fr)_72px_64px] md:grid-cols-[40px_1fr_140px_90px_80px]'
-    : 'grid-cols-[28px_minmax(0,1fr)_56px_48px] sm:grid-cols-[36px_minmax(0,1fr)_72px_64px]';
+    const maxPts = rows.find((r) => typeof r.pts === 'number')?.pts ?? 1;
+    const gridClass = showTeam
+      ? 'grid-cols-[28px_minmax(0,1fr)_56px_48px] sm:grid-cols-[36px_minmax(0,1fr)_72px_64px] md:grid-cols-[40px_1fr_140px_90px_80px]'
+      : 'grid-cols-[28px_minmax(0,1fr)_56px_48px] sm:grid-cols-[36px_minmax(0,1fr)_72px_64px]';
 
   return (
     <section id={id} className="max-w-7xl mx-auto px-3 sm:px-4 pb-8 sm:pb-10">
@@ -90,7 +83,7 @@ function StandingsTable({
 
         {rows.map((row) => {
           const isLeader = row.pos === 1;
-          const barWidth = Math.round((row.pts / maxPts) * 100);
+          const barWidth = typeof row.pts === 'number' ? Math.round((row.pts / maxPts) * 100) : 0;
 
           return (
             <div
@@ -139,7 +132,7 @@ function StandingsTable({
 
                 <span className={`font-oswald font-600 text-xs sm:text-sm text-right tabular-nums
                   ${isLeader ? "text-nascar-red" : "text-foreground"}`}>
-                  {row.pts.toLocaleString()}
+                  {row.ptsLabel ?? (typeof row.pts === 'number' ? row.pts.toLocaleString() : '—')}
                 </span>
 
                 <span className={`font-oswald text-[10px] sm:text-xs text-right tabular-nums
@@ -174,7 +167,7 @@ export default function CupStandings() {
         id="cup-standings"
         icon="🏆"
         title="Cup Series Standings"
-        subtitle="After Daytona (Coke Zero Sugar 400) · Chase reset · August 29, 2026"
+        subtitle="Chase reset after Daytona · Southern 500 LIVE (race 1 of 10) · points update after checkered"
         rows={CUP_STANDINGS}
         showTeam
         seriesColor="text-series-cup"
@@ -184,7 +177,7 @@ export default function CupStandings() {
         id="xfinity-standings"
         icon="⚡"
         title="O'Reilly Series Standings"
-        subtitle="After Iowa (HyVee Perks 250) · August 8, 2026"
+        subtitle="Chase after Darlington · Creed wins Fleetio 200 · 2nd, ~7 behind Allgaier · official point totals not verified on this desk"
         rows={XFINITY_STANDINGS}
         seriesColor="text-series-xfinity"
         borderAccent="border-t-series-xfinity"

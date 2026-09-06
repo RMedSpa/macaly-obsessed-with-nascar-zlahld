@@ -16,17 +16,18 @@ export default function CupChaseCTA() {
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
           <div>
             <p className="font-oswald text-xs uppercase tracking-[0.2em] text-strategy-yellow mb-2">
-              Cup Chase · 2026 · Top 16
+              Cup Chase · 2026 · Race 1 of 10
             </p>
             <h2
               id="chase-cta-heading"
               className="font-archivo text-3xl sm:text-4xl tracking-tight text-foreground"
             >
-              Chase field locked
+              Chase is underway
             </h2>
             <p className="mt-3 max-w-xl font-oswald text-base text-muted-foreground leading-relaxed">
-              Daytona froze the 16. Ryan Preece locked the last seed with his first career win.
-              Shane van Gisbergen missed despite two victories. See the reset board and the 10-race Chase.
+              The Southern 500 is LIVE — Chase race 1 of 10. Daytona froze the 16. Ryan Preece
+              locked the last seed. Shane van Gisbergen missed despite two wins. Highest 10-race
+              total wins the Cup.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link

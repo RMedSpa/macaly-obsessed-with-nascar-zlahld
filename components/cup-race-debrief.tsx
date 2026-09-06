@@ -355,7 +355,7 @@ export default function CupRaceDebrief() {
         <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-4 sm:mb-5">
           <span className="inline-flex items-center gap-1.5 rounded-sm bg-nascar-red px-2.5 py-1 font-oswald text-[10px] sm:text-[11px] font-600 tracking-[0.2em] uppercase text-white">
             <span className="w-1.5 h-1.5 rounded-full bg-white pulse-dot" aria-hidden />
-            Last Cup Race
+            Previous checkered
           </span>
           <span className="font-oswald text-[11px] sm:text-xs tracking-[0.16em] text-white/50 uppercase">
             {race.eventLabel}
@@ -640,7 +640,7 @@ export default function CupRaceDebrief() {
           <div className="rounded-xl border border-nascar-red/40 bg-nascar-red/10 p-4 sm:p-5 flex flex-col justify-between gap-4">
             <div>
               <p className="font-oswald text-[10px] tracking-[0.2em] text-nascar-red uppercase mb-2">
-                Next up
+                {/LIVE/i.test(race.nextRace.when) ? 'Now LIVE' : 'Next up'}
               </p>
               <p className="font-archivo text-xl sm:text-2xl uppercase text-white leading-none mb-2">
                 {race.nextRace.name}

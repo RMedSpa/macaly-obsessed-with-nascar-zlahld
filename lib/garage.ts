@@ -4,7 +4,7 @@ export const GARAGE_DISCLAIMER =
 export const NEXT_RACE_CHIP = {
   name: "Cook Out Southern 500",
   track: "Darlington Raceway",
-  when: "Sun Sep 6, 2026 · 5 p.m. ET / 3 p.m. MDT",
+  when: "LIVE · race day · Sun Sep 6 · 5 p.m. ET / 3 p.m. MDT",
 };
 
 export function garageNextChip(race?: { name: string; track: string; dateLabel: string } | null) {

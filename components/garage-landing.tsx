@@ -52,7 +52,7 @@ export default function GarageLanding() {
         <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-strategy-yellow/40 bg-strategy-yellow/10 px-4 py-2">
           <span className="w-2 h-2 rounded-full bg-strategy-yellow pulse-dot" />
           <span className="font-oswald text-xs uppercase tracking-wider text-strategy-yellow">
-            Next race · {nextChip.name} · {nextChip.track} · {nextChip.when}
+            LIVE · {nextChip.name} · {nextChip.track} · {nextChip.when}
           </span>
         </div>
         <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">

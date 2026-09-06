@@ -6,6 +6,8 @@ interface Session {
   session: string;
   channel: string;
   isRace?: boolean;
+  isLive?: boolean;
+  isFinal?: boolean;
   seriesColor?: string; // Tailwind bg class
 }
 

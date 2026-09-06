@@ -14,6 +14,12 @@ export type DarlingtonStartRow = {
   driver: string;
 };
 
+export type DarlingtonFinishRow = {
+  pos: number;
+  car: string;
+  driver: string;
+};
+
 export const DARLINGTON_WEEKEND = {
   id: "darlington-weekend",
   track: "Darlington Raceway",
@@ -21,35 +27,39 @@ export const DARLINGTON_WEEKEND = {
   dateLabel: "Sat Sept 5 – Sun Sept 6, 2026",
   startIso: "2026-09-05T10:00:00-04:00",
   liveUntilIso: "2026-09-07T08:00:00-04:00",
-  snapshotLabel: "Cup qualifying canceled · metric grid posted",
-  sourceLabel: "Metric lineup after lightning canceled Cup qualifying · Sept 5, 2026",
+  snapshotLabel: "GREEN · LIVE · Chase opener",
+  sourceLabel: "Race-day desk · Sept 6, 2026 · ~3:25 p.m. MDT",
   sourceUrl: "https://www.motorsport.com/nascar-cup/news/nascar-cup-darlington-southern-500-starting-lineup/10852786/",
   cup: {
     raceName: "Cook Out Southern 500",
-    eventLabel: "Cup Series · Race 27 of 36 · Chase opener",
+    eventLabel: "Cup Series · Race 27 of 36 · Chase race 1 of 10",
     distance: "367 laps · 501.32 miles",
     stages: "115 / 230 / 367",
-    tvRace: "USA Network",
+    tvRace: "USA Network / HBO Max",
     tvPq: "TruTV / HBO Max",
     radio: "MRN · SiriusXM Ch. 90",
     greenFlagEt: "Sunday, 5:00 p.m. ET",
     greenFlagLocal: "Sunday, 3:00 p.m. MDT",
+    greenApprox: "Green ~5:10 p.m. ET per Jayski",
     practiceEt: "Saturday, 4:00 p.m. ET",
     qualifyingEt: "Saturday, 5:05 p.m. ET",
-    status: "canceled" as const,
-    runName: "Cup qualifying canceled",
-    flagNote: "Lightning hold · no Cup laps · metric grid posted",
-    headline: "Cup qualifying canceled. Reddick on the metric pole.",
-    lede: "Lightning around Darlington wiped Saturday's Cup session. No rain on the oval. NASCAR set the Southern 500 grid by the metric: 70 percent last race, 30 percent owner points. Tyler Reddick starts first in the 23XI No. 45. Daniel Suárez starts second. Ryan Preece starts third.",
+    status: "green" as const,
+    runName: "Chase opener under green",
+    flagNote: "GREEN / LIVE · metric grid · winner TBD after checkered",
+    headline: "Southern 500 is LIVE. Chase opener under green.",
+    lede: "Race day at the Lady in Black. The Cook Out Southern 500 is LIVE — Cup Series race 27 of 36, Chase race 1 of 10. Saturday qualifying was canceled by lightning; the field is the metric grid. Tyler Reddick starts first in the 23XI No. 45. Daniel Suárez starts second. Ryan Preece starts third. Denny Hamlin is fourth. This desk is not inventing a lap leader, caution count, or stage winner. Winner slot stays open until the checkered flag.",
+    winner: null as string | null,
+    winnerNote: "Winner TBD — follow-up desk after the Southern 500 checkered.",
   },
   oreilly: {
     raceName: "Fleetio 200",
     eventLabel: "O'Reilly Auto Parts Series · Race 25 of 33 · Chase opener",
-    distance: "147 laps · 200.8 miles",
+    distance: "147 laps · ~200.8 miles",
     tvRace: "The CW",
     tvPq: "The CW App / ESPN Unlimited",
     greenFlagEt: "Saturday, 7:30 p.m. ET",
     greenFlagLocal: "Saturday, 5:30 p.m. MDT",
+    status: "checkered" as const,
     pole: {
       car: "1",
       driver: "Carson Kvapil",
@@ -69,16 +79,40 @@ export const DARLINGTON_WEEKEND = {
       driver: "Dawson Cram",
       note: "No qualifying lap posted",
     },
-    headline: "Kvapil takes the Fleetio 200 pole",
-    lede: "O'Reilly Auto Parts Series practice and qualifying got in before the storms. Carson Kvapil parked the JR Motorsports No. 1 on pole at 30.424 seconds (161.636 mph). Justin Allgaier starts second. The Fleetio 200 still goes green at 7:30 p.m. ET on The CW.",
+    winner: {
+      driver: "Sheldon Creed",
+      car: "00",
+      team: "Haas Factory Team",
+      make: "Chevrolet",
+      careerWin: 2,
+      seasonWin: 2,
+      note: "First non-superspeedway win",
+    },
+    headline: "Creed wins the Fleetio 200",
+    lede: "Sheldon Creed checkered the Fleetio 200 in the Haas Factory Team No. 00 Chevrolet — his second career O'Reilly win, second of 2026, and first away from a superspeedway. 147 laps, about 200.8 miles. He led the final stretch (reports: last 53 laps; pit-crew jump for the restart with about 49 to go). Carson Kvapil started on pole — first career O'Reilly pole — led 20 laps, and finished 12th after tire strategy failed.",
+    chaseNote: "Chase after Darlington · Creed 2nd, ~7 behind Allgaier · 8 races remaining",
+    finishers: [
+      { pos: 1, car: "00", driver: "Sheldon Creed" },
+      { pos: 2, car: "17", driver: "Corey Day" },
+      { pos: 3, car: "19", driver: "Brent Crews" },
+      { pos: 4, car: "8", driver: "Sammy Smith" },
+      { pos: 5, car: "21", driver: "Austin Hill" },
+      { pos: 6, car: "96", driver: "Anthony Alfredo" },
+      { pos: 7, car: "54", driver: "Taylor Gray" },
+      { pos: 8, car: "41", driver: "Sam Mayer" },
+      { pos: 9, car: "", driver: "Jeremy Clements" },
+      { pos: 10, car: "20", driver: "Brandon Jones" },
+    ] satisfies DarlingtonFinishRow[],
   },
-  delayNotes: [
-    "Lightning around the track canceled Cup qualifying. The oval never took a Cup lap Saturday.",
-    "Starting lineup is the metric: 70 percent last-race finish, 30 percent owner points.",
-    "Pole: Tyler Reddick. Row 1: Daniel Suárez. Preece P3, Hamlin P4, McDowell P5.",
-    "Lowest Chase cars: Hocevar 34th, Buescher 35th. Blaney 24th, Larson 25th, Gibbs 28th.",
-    "O'Reilly Fleetio 200 qualifying stands: Kvapil pole, 7:30 p.m. ET on The CW.",
-    "Southern 500 remains Sunday 5 p.m. ET on USA, 367 laps, stages 115 / 230 / 367.",
+  boothNotes: [
+    "Southern 500 is LIVE. Chase race 1 of 10. Green about 5:10 p.m. ET. USA Network / HBO Max. Radio MRN / SiriusXM 90.",
+    "Do not invent a lap leader, caution count, or stage winner on this desk. Winner slot stays open until checkered.",
+    "Metric grid after Saturday lightning canceled Cup qualifying. Pole: Tyler Reddick. P2 Daniel Suárez. P3 Ryan Preece. P4 Denny Hamlin.",
+    "Lowest Chase cars on the metric: Hocevar 34th, Buescher 35th. Blaney 24th, Larson 25th, Gibbs 28th.",
+    "Fleetio 200 is CHECKERED. Sheldon Creed, Haas Factory Team No. 00 Chevrolet. Second career O'Reilly win, second of 2026, first non-superspeedway win.",
+    "Fleetio top 10: Creed, Corey Day (#17), Brent Crews, Sammy Smith, Austin Hill, Anthony Alfredo (Stage 2 after staying out), Taylor Gray, Sam Mayer, Jeremy Clements, Brandon Jones.",
+    "Kvapil pole, led 20, P12 after tire strategy failed. Allgaier won Stage 1 and finished 17th. Parker Retzlaff 21st. Rajah Caruth 26th (fuel pickup).",
+    "O'Reilly Chase after Darlington: Creed vaulted to 2nd, about 7 points behind Justin Allgaier, with 8 races remaining. Official full totals not verified on this desk.",
   ],
   cupStarting: [
     { pos: 1, car: "45", driver: "Tyler Reddick" },
@@ -138,7 +172,7 @@ export const DARLINGTON_WEEKEND = {
 
 export const DARLINGTON_WEEKEND_TV = {
   weekend: "Darlington Raceway · September 5–6, 2026 · All times Mountain (MDT)",
-  note: "Cup qualifying canceled. Metric Southern 500 grid is posted. O'Reilly qualifying is final. Radio: MRN / SiriusXM Ch. 90.",
+  note: "Saturday sessions are final. Fleetio 200 is CHECKERED (Creed). Sunday Cup is LIVE — Southern 500, Chase race 1 of 10. Radio: MRN / SiriusXM Ch. 90.",
   days: [
     {
       day: "Saturday",
@@ -175,9 +209,9 @@ export const DARLINGTON_WEEKEND_TV = {
         {
           time: "5:30 PM",
           series: "O'Reilly",
-          session: "Race — Fleetio 200",
+          session: "Race — Fleetio 200 — CHECKERED · Creed",
           channel: "The CW",
-          isRace: true,
+          isFinal: true,
           seriesColor: "bg-series-xfinity",
         },
       ],
@@ -189,9 +223,10 @@ export const DARLINGTON_WEEKEND_TV = {
         {
           time: "3:00 PM",
           series: "Cup",
-          session: "Race — Cook Out Southern 500",
-          channel: "USA Network",
+          session: "Race — Cook Out Southern 500 — LIVE",
+          channel: "USA Network / HBO Max",
           isRace: true,
+          isLive: true,
           seriesColor: "bg-series-cup",
         },
       ],

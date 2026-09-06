@@ -68,30 +68,30 @@ export default function RaceCountdown() {
     return (
       <Link
         href="/#darlington-weekend"
-        className="block rounded-xl border border-strategy-yellow/50 bg-black/60 backdrop-blur overflow-hidden text-left hover:border-strategy-yellow transition-colors"
-        data-testid="darlington-delay-cta"
+        className="block rounded-xl border border-nascar-red/50 bg-black/60 backdrop-blur overflow-hidden text-left hover:border-nascar-red transition-colors"
+        data-testid="darlington-live-cta"
       >
-        <div className="bg-strategy-yellow/90 px-3 sm:px-4 py-2 flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-black pulse-dot flex-shrink-0" />
-          <span className="font-oswald font-600 text-black text-xs tracking-[0.2em] uppercase">
-            Rain delay
+        <div className="bg-nascar-red/90 px-3 sm:px-4 py-2 flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-white pulse-dot flex-shrink-0" />
+          <span className="font-oswald font-600 text-white text-xs tracking-[0.2em] uppercase">
+            LIVE now
           </span>
         </div>
         <div className="px-3 sm:px-4 pt-3 sm:pt-4 pb-4 sm:pb-5">
           <p className="font-oswald text-[11px] tracking-[0.16em] text-white/45 uppercase mb-1">
-            Cook Out Southern 500 weekend
+            Cook Out Southern 500 · Chase race 1 of 10
           </p>
           <p className="font-archivo text-white text-lg sm:text-xl leading-tight mb-1">
-            Cup P&amp;Q on hold
+            Green at Darlington
           </p>
           <p className="font-oswald text-sm text-strategy-yellow tracking-wide uppercase mb-2">
-            O&apos;Reilly pole · Kvapil #1
+            Metric pole · Reddick #45
           </p>
           <p className="font-oswald text-white/55 text-[12px] leading-snug mb-3">
-            Fleetio 200 tonight 7:30 p.m. ET on The CW. Southern 500 Sunday 5 p.m. ET USA.
+            Winner TBD after checkered. Creed checkered the Fleetio 200 Saturday.
           </p>
           <p className="font-oswald font-600 text-xs tracking-[0.16em] uppercase text-nascar-blue">
-            Open weekend desk →
+            Open live desk →
           </p>
         </div>
       </Link>

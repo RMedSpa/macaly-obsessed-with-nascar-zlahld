@@ -68,7 +68,7 @@ export const TRACK_CATEGORIES: TrackCategory[] = [
       {
         name: 'New Hampshire Motor Speedway',
         lengthMi: 1.058,
-        note: '“Magic Mile” · Loudon, NH · next Cup stop',
+        note: '“Magic Mile” · Loudon, NH · Dollar Tree 301 checkered Aug 23',
       },
       {
         name: 'Phoenix Raceway',

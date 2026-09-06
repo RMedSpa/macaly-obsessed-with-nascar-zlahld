@@ -215,12 +215,12 @@ export const LATEST_CUP_RACE: CupRaceDebrief = {
     "Shane van Gisbergen (#97) missed The Chase. He sits 17th at 605 regular-season points with 2 wins. First man out.",
     "Chase field is frozen: Hamlin seeded 1st at 2,100, then Blaney, Reddick, Gibbs, Briscoe through Preece at 2,000.",
     "Ross Chastain sat on the pole (48.808). Austin Hill led a race-high 27 laps in the ineligible RCR No. 33.",
-    "The 10-race Chase is next. No elimination rounds. Highest total after race 36 wins the Cup.",
+    "The 10-race Chase is underway. Race 1 of 10 is the Southern 500 — LIVE at Darlington. Winner TBD after checkered.",
   ],
   nextRace: {
     name: "Cook Out Southern 500",
     track: "Darlington Raceway",
-    when: "Sun · Sep 6, 2026",
+    when: "LIVE · Sun Sep 6, 2026 · Chase race 1 of 10",
   },
 };
 
