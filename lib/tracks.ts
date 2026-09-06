@@ -458,7 +458,7 @@ export const TRACKS: CupTrackProfile[] = [
       { text: 'Hocevar’s April 2026 win was his first in Cup. Stenhouse’s 2024 fall win was 0.006 seconds.' },
       { text: 'Bubba Wallace’s first Cup win (Oct. 2021) was rain-shortened after 117 of 188 laps.' },
       { text: 'The Big One is the multi-car wreck the draft invents when someone flinches.', lore: true },
-      { text: 'First Cup race: 1969. Richard Petty won the inaugural Talladega 500.' },
+      { text: 'First Cup race: 1969 Talladega 500. Richard Brickhouse won after most stars, led by Petty, boycotted over tires.' },
     ],
     calendar2026: [
       {
