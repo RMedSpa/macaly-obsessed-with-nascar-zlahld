@@ -11,6 +11,7 @@ import {
   TRACK_TYPE_LABELS,
   type TrackType,
 } from '@/lib/beginners-data';
+import { BEGINNER_TRACK_DESK } from '@/lib/tracks';
 
 const JUMP_LINKS = [
   { id: 'basics', label: 'Basics' },
@@ -368,7 +369,13 @@ export default function BeginnersGuide() {
                       </span>
                     </div>
                     <h3 className="font-archivo text-base sm:text-lg uppercase tracking-wide text-foreground leading-tight">
-                      {track.name}
+                      {BEGINNER_TRACK_DESK[track.id] ? (
+                        <Link href={`/tracks/${BEGINNER_TRACK_DESK[track.id]}`} className="hover:text-nascar-red">
+                          {track.name}
+                        </Link>
+                      ) : (
+                        track.name
+                      )}
                     </h3>
                     <p className="font-oswald text-xs sm:text-sm text-muted-foreground mt-1">
                       {track.location}
@@ -396,6 +403,14 @@ export default function BeginnersGuide() {
                       </p>
                       <p className="font-oswald text-sm text-foreground leading-relaxed">{track.fanTip}</p>
                     </div>
+                    {BEGINNER_TRACK_DESK[track.id] && (
+                      <Link
+                        href={`/tracks/${BEGINNER_TRACK_DESK[track.id]}`}
+                        className="inline-flex font-oswald text-xs uppercase tracking-wider text-nascar-red hover:underline"
+                      >
+                        Chase track desk →
+                      </Link>
+                    )}
                   </div>
                 </article>
               ))}

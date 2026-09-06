@@ -479,6 +479,12 @@ export default function CupChaseBoard({ board }: { board: ChaseBoard }) {
               Last race
             </Link>
             <Link
+              href="/tracks"
+              className="inline-flex items-center font-oswald text-xs tracking-widest uppercase px-4 py-2.5 rounded-lg border border-border bg-secondary text-foreground hover:bg-secondary/80 transition-colors"
+            >
+              Tracks
+            </Link>
+            <Link
               href="/"
               className="inline-flex items-center font-oswald text-xs tracking-widest uppercase px-4 py-2.5 rounded-lg border border-border text-muted-foreground hover:text-foreground transition-colors"
             >

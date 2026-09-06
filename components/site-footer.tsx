@@ -49,6 +49,7 @@ export default function SiteFooter() {
               { label: '2027 Schedule', href: '/2027-schedule', external: false },
               { label: 'Beginners', href: '/beginners', external: false },
               { label: 'iRacing Tips', href: '/iracing', external: false },
+              { label: 'Tracks', href: '/tracks', external: false },
               { label: 'Track Types', href: '/track-types', external: false },
               { label: 'Pit Strategy', href: '/pit-strategy', external: false },
               { label: 'Driver Hub', href: '/drivers', external: false },
@@ -82,6 +83,9 @@ export default function SiteFooter() {
             </p>
             <p className="font-oswald text-[11px] text-muted-foreground/80 tracking-wide max-w-sm mx-auto">
               Fan quiz on nascarlove.org. Not affiliated with NASCAR, its teams, or its drivers.
+            </p>
+            <p className="font-oswald text-[11px] text-muted-foreground/80 tracking-wide max-w-sm mx-auto">
+              Fan desk on nascarlove.org. Not affiliated with NASCAR, its teams, or its drivers.
             </p>
           </div>
         </div>

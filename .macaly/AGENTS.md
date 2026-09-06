@@ -54,6 +54,8 @@
 - `convex/raceUpdates.ts` — publish/seed/log helpers; tables `cupRaceDebriefs`, `raceUpdateRuns`
 - `lib/pit-strategy.ts` — Per-track Cup presets (short/flat/intermediate/superspeedway/road) + stint/fuel math for Pit Strategy Calculator (default: New Hampshire / Dollar Tree 301). Values are editorial estimates, not live telemetry.
 - `app/pit-strategy/page.tsx` — Pit Strategy Calculator (client UI in `components/pit-strategy-calculator.tsx`); when `getLiveCupRace()` is green, defaults laps remaining to the live Loudon snapshot and shows `components/pit-strategy-live-board.tsx` (leader, pit log, fuel call) plus `components/berry-vs-optimal.tsx` (Berry stints vs Optimal Stint).
+- **Tracks desk** at `/tracks` via `lib/tracks.ts` + `components/tracks-index.tsx` / `track-desk.tsx` / `track-infographic.tsx`; homepage CTA `components/tracks-cta.tsx`. v1 = 2026 Chase venues. Winners must be verified; do not invent. Charlotte 2026 Chase race is the oval (Bank of America 400), not the Roval. Disclaimer: “Fan desk on nascarlove.org. Not affiliated with NASCAR, its teams, or its drivers.”
+- `lib/tracks.ts` + `app/tracks/page.tsx` + `app/tracks/[slug]/page.tsx` — 2026 Chase track desks (SVG layout, winners, next date)
 - `lib/track-types.ts` + `components/track-types-guide.tsx` + `app/track-types/page.tsx` — Track Types educational guide (NHMS under Flat Miles)
 - `lib/iracing-tips.ts` + `components/iracing-tips-guide.tsx` + `app/iracing/page.tsx` — iRacing tips guide (NASCAR ovals) + Cup setup starters per track (bias/pressures/bars/tight-loose); includes Magic Mile flat-mile tip; default setup Loudon
 - `components/iracing-cta.tsx` — Homepage teaser to `/iracing`

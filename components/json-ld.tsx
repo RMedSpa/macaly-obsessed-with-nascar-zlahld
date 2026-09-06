@@ -464,6 +464,36 @@ export function pitStrategyJsonLd() {
   };
 }
 
+export function tracksJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${SITE_URL}/tracks#webpage`,
+    url: `${SITE_URL}/tracks`,
+    name: 'NASCAR Cup Track Desk | Chase 2026',
+    description:
+      'Per-track booth cards for the 2026 Cup Chase: layouts, specs, history, and last 10 Cup winners.',
+    isPartOf: { '@id': `${SITE_URL}/#website` },
+  };
+}
+
+export function trackDeskJsonLd(track: { slug: string; name: string; location: string; nickname: string }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${SITE_URL}/tracks/${track.slug}#webpage`,
+    url: `${SITE_URL}/tracks/${track.slug}`,
+    name: `${track.name} | Cup Track Desk`,
+    description: `${track.nickname} in ${track.location} — Chase track desk with layout graphic and Cup winners.`,
+    isPartOf: { '@id': `${SITE_URL}/#website` },
+    about: {
+      '@type': 'Place',
+      name: track.name,
+      address: track.location,
+    },
+  };
+}
+
 export function trackTypesJsonLd() {
   return {
     '@context': 'https://schema.org',

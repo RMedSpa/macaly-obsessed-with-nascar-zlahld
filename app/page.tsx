@@ -10,6 +10,7 @@ import IracingCTA from '@/components/iracing-cta';
 import RaceSchedule from '@/components/race-schedule';
 import CupStandings from '@/components/cup-standings';
 import CupChaseCTA from '@/components/cup-chase-cta';
+import TracksCta from '@/components/tracks-cta';
 import LoveGarageCta from '@/components/love-garage-cta';
 import TriviaNightCta from '@/components/trivia-night-cta';
 import Schedule2027CTA from '@/components/schedule-2027-cta';
@@ -83,6 +84,7 @@ export default async function Home() {
         <TvGuide />
         <CupStandings />
         <CupChaseCTA />
+        <TracksCta />
         <LoveGarageCta />
         <TriviaNightCta />
         <Schedule2027CTA />
