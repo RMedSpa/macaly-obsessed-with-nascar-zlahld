@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import TrackInfographic from '@/components/track-infographic';
-import { TRACKS_SOURCES, getNextCalendarRace, tracksByChaseOrder } from '@/lib/tracks';
+import { TRACKS_SOURCES, calendarRaceChip, getNextCalendarRace, tracksByChaseOrder } from '@/lib/tracks';
 
 const KIND_CHIP: Record<string, string> = {
   short: 'border-series-truck/40 bg-series-truck/10 text-series-truck',
@@ -27,7 +27,7 @@ export default function TracksIndex() {
           </h1>
           <p className="mt-3 max-w-2xl font-oswald text-base text-white/65 leading-relaxed">
             Per-track booth cards for the 10-race Chase — layout graphic, specs, a short history,
-            last 10 Cup winners, and the next Mountain-time date on this desk’s calendar.
+            last 10 Cup winners, and today’s LIVE Southern 500 plus the rest of the Chase map.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
@@ -50,6 +50,7 @@ export default function TracksIndex() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {tracks.map((track) => {
             const next = getNextCalendarRace(track);
+            const chip = calendarRaceChip(next);
             return (
               <article
                 key={track.slug}
@@ -77,9 +78,9 @@ export default function TracksIndex() {
                   <p className="font-oswald text-sm text-muted-foreground mt-1">
                     {track.nickname} · {track.location}
                   </p>
-                  {next && (
-                    <p className="mt-3 font-oswald text-xs uppercase tracking-wider text-strategy-yellow">
-                      Next · {next.name} · {next.dateLabel}
+                  {chip && (
+                    <p className={`mt-3 font-oswald text-xs uppercase tracking-wider ${chip.live ? 'text-nascar-red' : 'text-strategy-yellow'}`}>
+                      {chip.kicker} · {chip.detail}
                     </p>
                   )}
                   <Link

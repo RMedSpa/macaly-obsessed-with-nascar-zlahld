@@ -16,7 +16,7 @@ export default function LoveGarageCta() {
           Love Garage — your car, your pit calls.
         </h2>
         <p className="mt-3 max-w-xl font-oswald text-base text-white/65 leading-relaxed">
-          Ghost car, midpack start. You call stay out, two, four, or fuel. Stack up against the crew after Darlington.
+          Ghost car, midpack start. You call stay out, two, four, or fuel. Stack up against the crew while the Southern 500 is under green.
         </p>
         <Link
           href="/garage"

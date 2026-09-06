@@ -253,9 +253,9 @@ export function cupChaseJsonLd() {
     '@type': 'WebPage',
     '@id': `${SITE_URL}/chase#webpage`,
     url: `${SITE_URL}/chase`,
-    name: 'NASCAR Cup Chase Desk | Top 16 Points Cut Line',
+    name: 'Cup Chase Desk | Race 1 of 10 LIVE',
     description:
-      '2026 Cup Chase desk: top 16 on points only, cut-line bubble, big win bonuses (~55 pts), and a 10-race cumulative title run.',
+      '2026 Cup Chase is underway. Race 1 of 10 is the Southern 500 at Darlington. Field locked after Daytona. Highest 10-race total wins the Cup.',
     isPartOf: { '@id': `${SITE_URL}/#website` },
     about: {
       '@type': 'Thing',

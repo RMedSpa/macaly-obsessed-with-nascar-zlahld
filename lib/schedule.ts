@@ -9,7 +9,7 @@ export interface CupRace {
 
 // Cup Series 2026 upcoming races — sorted chronologically
 // Times converted to MST/MDT for Arizona-facing audience
-// Updated Sept 5, 2026 — Darlington Chase weekend. Cup qualifying canceled; metric grid posted. Southern 500 Sun 5 p.m. ET / 3 p.m. MDT USA.
+// Updated Sept 6, 2026 ~3:25 p.m. MDT — Southern 500 LIVE (Chase race 1 of 10). Dollar Tree 301 and Coke Zero Sugar 400 are checkered (Blaney, Preece).
 export const CUP_RACES_2026: CupRace[] = [
   {
     name: 'Dollar Tree 301',

@@ -381,7 +381,7 @@ export function buildChaseBoard(
   const source = opts?.source ?? 'fallback';
   const asOfLabel =
     opts?.asOfLabel ??
-    'After Daytona (Coke Zero Sugar 400) · Aug 29, 2026';
+    'Chase race 1 of 10 · Southern 500 LIVE · points still after Daytona (Aug 29, 2026)';
 
   const eligible = eligibleDrivers(standings);
   const { inside: rawInside, outside: rawOutside } = buildProvisionalField(eligible);
@@ -580,8 +580,8 @@ export async function fetchCupChaseBoard(): Promise<ChaseBoard> {
 }
 
 export const CHASE_HIGHLIGHTS = [
-  'Chase field locked after Daytona',
+  'Chase underway · race 1 of 10',
+  'Southern 500 LIVE · Darlington',
   'Preece 16th seed · SVG first out',
-  '10-race Chase · no eliminations',
   'Highest total wins the title',
 ];

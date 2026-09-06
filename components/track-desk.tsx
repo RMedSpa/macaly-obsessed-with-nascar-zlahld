@@ -3,6 +3,7 @@ import TrackInfographic from '@/components/track-infographic';
 import {
   TRACKS,
   TRACKS_SOURCES,
+  calendarRaceChip,
   getNextCalendarRace,
   type CupTrackProfile,
 } from '@/lib/tracks';
@@ -47,6 +48,7 @@ type Props = {
 
 export default function TrackDesk({ track }: Props) {
   const next = getNextCalendarRace(track);
+  const chip = calendarRaceChip(next);
   const others = TRACKS.filter((t) => t.slug !== track.slug).sort((a, b) => a.chaseOrder - b.chaseOrder);
 
   return (
@@ -73,9 +75,16 @@ export default function TrackDesk({ track }: Props) {
             <span className="rounded-full border border-white/15 bg-white/5 px-2.5 py-1 font-oswald text-[10px] uppercase tracking-[0.18em] text-white/70">
               Chase race {track.chaseOrder} of 10
             </span>
-            {next?.chase && (
-              <span className="rounded-full border border-strategy-yellow/40 bg-strategy-yellow/10 px-2.5 py-1 font-oswald text-[10px] uppercase tracking-[0.18em] text-strategy-yellow">
-                Next on the calendar · {next.dateLabel}
+            {chip && (
+              <span
+                className={`rounded-full border px-2.5 py-1 font-oswald text-[10px] uppercase tracking-[0.18em] ${
+                  chip.live
+                    ? 'border-nascar-red/40 bg-nascar-red/10 text-nascar-red'
+                    : 'border-strategy-yellow/40 bg-strategy-yellow/10 text-strategy-yellow'
+                }`}
+              >
+                {chip.kicker}
+                {chip.live ? '' : ` · ${next?.dateLabel}`}
               </span>
             )}
           </div>
@@ -90,8 +99,9 @@ export default function TrackDesk({ track }: Props) {
 
           {next && (
             <p className="mt-4 max-w-2xl font-oswald text-sm text-white/70 leading-relaxed">
-              {next.chase ? '2026 Chase date' : '2026 Cup date'}: {next.name}
+              {chip?.live ? 'LIVE · race day' : next.chase ? '2026 Chase date' : '2026 Cup date'}: {next.name}
               {next.layout ? ` · ${next.layout}` : ''} · {next.dateLabel} · {next.tv}
+              {chip?.live ? ' · winner TBD after checkered' : ''}
             </p>
           )}
         </div>

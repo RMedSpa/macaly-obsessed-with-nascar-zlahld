@@ -240,9 +240,10 @@ export default function CupChaseBoard({ board }: { board: ChaseBoard }) {
             </span>
           </h1>
           <p className="font-oswald text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed mb-6">
-            The 16 is locked after Daytona. 2026 stayed points-only — no win-and-you&apos;re-in.
+            The Chase is underway. Race 1 of 10 is the Southern 500 at Darlington — LIVE.
+            The 16 locked after Daytona. 2026 stayed points-only — no win-and-you&apos;re-in.
             Ryan Preece took the last seed. Shane van Gisbergen missed despite two wins.
-            Ten Chase races decide the Cup, no elimination rounds.
+            Highest 10-race total wins the Cup. No elimination rounds.
           </p>
 
           <p className="font-oswald text-xs tracking-wide text-muted-foreground mb-6">
@@ -257,7 +258,7 @@ export default function CupChaseBoard({ board }: { board: ChaseBoard }) {
                 label: 'Winners in 16',
                 value: String(board.winnersInTop16),
               },
-              { label: fieldLocked ? 'Reg. season left' : 'Races left', value: String(board.regularSeasonRacesLeft) },
+              { label: fieldLocked ? 'Chase' : 'Races left', value: fieldLocked ? '1 of 10' : String(board.regularSeasonRacesLeft) },
             ].map((stat) => (
               <div
                 key={stat.label}
@@ -353,7 +354,7 @@ export default function CupChaseBoard({ board }: { board: ChaseBoard }) {
               ))}
               <div className="rounded-xl border border-dashed border-border bg-secondary/20 p-4">
                 <p className="font-oswald text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-2">
-                  Then The Chase
+                  {fieldLocked ? 'Chase underway · race 1 of 10' : 'Then The Chase'}
                 </p>
                 <ul className="space-y-1.5">
                   {board.roundRoadmap.map((r) => (
@@ -382,7 +383,7 @@ export default function CupChaseBoard({ board }: { board: ChaseBoard }) {
                 Bubble scenarios
               </h2>
               <p className="font-oswald text-sm text-muted-foreground mt-1">
-                Snapshot math for the final stretch — pure points race into a 10-race Chase.
+                Field locked after Daytona. Chase race 1 of 10 is LIVE at Darlington.
               </p>
             </div>
           </div>
@@ -401,10 +402,10 @@ export default function CupChaseBoard({ board }: { board: ChaseBoard }) {
                 id="inside-16-heading"
                 className="font-archivo text-xl sm:text-2xl uppercase tracking-tight text-foreground"
               >
-                Provisional Chase field
+                Chase field
               </h2>
               <p className="font-oswald text-sm text-muted-foreground mt-1">
-                Top 16 in regular-season points. Chase seed shown if the field froze today.
+                Top 16 locked after Daytona. Seeded for the 10-race Chase. Southern 500 is race 1.
               </p>
             </div>
             <a
