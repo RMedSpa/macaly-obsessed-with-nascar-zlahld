@@ -46,7 +46,36 @@ export default function TracksIndex() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-3 sm:px-4 py-8 sm:py-10">
+      <section className="max-w-6xl mx-auto px-3 sm:px-4 pt-8 sm:pt-10">
+        <div
+          className="rounded-xl border border-white/10 px-3 sm:px-4 py-4 mb-6"
+          style={{ backgroundColor: '#070b14' }}
+          data-testid="tracks-scale-strip"
+        >
+          <div className="flex flex-wrap items-end justify-between gap-2 mb-3">
+            <p className="font-oswald text-[10px] uppercase tracking-[0.22em] text-white/45">
+              Relative scale · Bristol vs Dega
+            </p>
+            <p className="font-oswald text-[10px] uppercase tracking-[0.16em] text-white/35">
+              Same outline table as the booth pages
+            </p>
+          </div>
+          <ol className="grid grid-cols-5 lg:grid-cols-10 gap-2 items-end">
+            {tracks.map((track) => (
+              <li key={track.slug} className="min-w-0">
+                <Link href={`/tracks/${track.slug}`} className="block group">
+                  <TrackInfographic track={track} variant="scale" />
+                  <p className="mt-1 font-oswald text-[9px] uppercase tracking-wider text-white/50 truncate group-hover:text-white">
+                    {track.name.replace(' Motor Speedway', '').replace(' Raceway', '').replace(' Superspeedway', '')}
+                  </p>
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="max-w-6xl mx-auto px-3 sm:px-4 pb-8 sm:pb-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {tracks.map((track) => {
             const next = getNextCalendarRace(track);
@@ -57,7 +86,7 @@ export default function TracksIndex() {
                 className="rounded-xl border border-border bg-card overflow-hidden card-lift flex flex-col"
               >
                 <div className="px-4 pt-4">
-                  <TrackInfographic track={track} />
+                  <TrackInfographic track={track} variant="thumb" />
                 </div>
                 <div className="px-4 py-4 flex-1 flex flex-col">
                   <div className="flex flex-wrap items-center gap-2 mb-2">
