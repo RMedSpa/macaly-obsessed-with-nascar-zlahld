@@ -55,4 +55,18 @@ describe('broadcast track outlines', () => {
     expect(TRACK_SHAPES.martinsville.geometryNote.toLowerCase()).toMatch(/paperclip/);
     expect(TRACK_SHAPES.talladega.lengthMiles).toBeCloseTo(2.66);
   });
+
+  it('draws the seven problem tracks as polylines or rings, not Catmull blobs', () => {
+    const seven = ['bristol', 'charlotte', 'homestead', 'phoenix', 'vegas', 'talladega', 'kansas'] as const;
+    for (const id of seven) {
+      const d = TRACK_SHAPES[id].d;
+      expect(d.includes(' C ')).toBe(false);
+      expect(d.includes(' L ') || d.includes(' A ')).toBe(true);
+    }
+    expect(TRACK_SHAPES.phoenix.d).toMatch(/575 72/);
+    expect(TRACK_SHAPES.charlotte.d).toMatch(/430 468/);
+    expect(TRACK_SHAPES.kansas.d).toMatch(/500 498/);
+    expect(TRACK_SHAPES.bristol.d).toMatch(/ L /);
+    expect(TRACK_SHAPES.homestead.d).toMatch(/ A /);
+  });
 });
